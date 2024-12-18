@@ -9,8 +9,25 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: {
+          light: "#13652f", // Light blue
+          DEFAULT: "#13652f", // Default blue
+          dark: "#0369a1", // Dark blue
+        },
+        secondary: {
+          light: "#d97706", // Light orange
+          DEFAULT: "#e5b26f", // Default orange
+          dark: "#d97706", // Dark orange
+        },
+        customGray: "#1f2937", // A custom gray color
+      },
+      backgroundImage: {
+        "hero-pattern": "url('/image/bg.png')",
+        // 'footer-texture': "url('/img/footer-texture.png')",
+      },
+      fontFamily: {
+        hind: ["var(--font-hind)", "sans-serif"], // Gunakan font "Hind" dari variabel
+        poppins: ["var(--font-poppins)", "sans-serif"], // Gunakan font "Poppins" dari variabel
       },
     },
   },
