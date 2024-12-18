@@ -26,7 +26,7 @@ function Hero() {
         </div>
       </div>
       <div className="w-full flex justify-start">
-        <button className="bg-primary-light ml-20 hover:bg-secondary-light text-white  py-3 px-6 mt-10 rounded-full ">
+        <button className="bg-primary-light md:ml-20 mx-auto hover:bg-secondary-light text-white  py-3 px-6 mt-10 rounded-full ">
           Book a consultation
         </button>
       </div>
