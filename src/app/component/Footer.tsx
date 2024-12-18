@@ -13,7 +13,7 @@ function Footer() {
             alt="gambar"
           />
           <h2>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. At rem,
+            Lorem, ipsum dolor sit samet consectetur adipisicing elit. At rem,
             accusantium corrupti dicta quis tempora, impedit, delectus quod
             nulla adipisci veniam dignissimos quaerat quo et in obcaecati!
             Deserunt asperiores eos enim debitis earum molestias ex nesciunt
