@@ -4,13 +4,19 @@ function Hero() {
   return (
     <section
       id="hero"
-      className="bg-hero-pattern bg-contain bg-right bg-no-repeat h-screen -mt-3 flex flex-col justify-center items-center "
+      className="bg-hero-pattern bg-contain md:bg-right bg-no-repeat h-screen md:-mt-3 flex flex-col justify-center items-center"
     >
-      <div className=" text-primary-light text-6xl font-bold  font-hind -mt-52 tracking-tight">
-        <div>
+      <div className=" text-primary-light md:text-6xl flex flex-col items-center text-[50px] font-bold  font-hind -mt-52 tracking-tight">
+        <div className="text-center">
           PEMBIAYAAN{" "}
-          <span className="text-secondary-light  text-[70px]">|</span> TABUNGAN{" "}
-          <span className="text-secondary-light text-[70px]">|</span> DEPOSITO
+          <span className="text-secondary-light  md:text-[70px] hidden md:inline">
+            |
+          </span>{" "}
+          TABUNGAN{" "}
+          <span className="text-secondary-light md:text-[70px] hidden md:inline">
+            |
+          </span>{" "}
+          DEPOSITO
         </div>
         <div
           className="tracking-normal text-primary-light text-center font-bold text-3xl

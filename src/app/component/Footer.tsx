@@ -3,7 +3,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <div className="w-10/12 mx-auto mb-10">
+    <div className=" w-10/12 mx-auto md:mb-10 mb-52 ">
       <div className="grid md:grid-cols-2 grid-cols-1 gap-32">
         <div className="flex flex-col max-w-[400px]">
           <Image

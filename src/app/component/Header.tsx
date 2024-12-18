@@ -59,7 +59,7 @@ function Header() {
             height={60}
             className="m-3"
           />
-          <div className="flex justify-end gap-5 mx-20 font-bold text-slate-800 text-sm">
+          <div className="md:flex hidden justify-end gap-5 mx-20 font-bold text-slate-800 text-sm">
             <Link href="#hero">Home</Link>
             <Link href="#about">About us</Link>
             <Link href="#product">Our Product</Link>
