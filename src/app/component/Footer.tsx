@@ -122,7 +122,7 @@ function Footer() {
             <div className="max-w-400px">bprshik_mks@yahoo.com</div>
           </div>
           <div className="flex gap-3">
-            <Image src={"/image/ojk.png"} alt={"OJK"} width={100} height={30} />
+            <Image src={"/image/ojk.png"} alt={"OJK"} width={120} height={30} />
             <Image src={"/image/lps.png"} alt={"LPS"} width={110} height={80} />
           </div>
         </div>
