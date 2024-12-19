@@ -6,7 +6,7 @@ function Header() {
   return (
     <>
       <nav className=" bg-secondary min-h-10 p-2">
-        <div className="flex space-x-3 items-center ml-6">
+        <div className="flex space-x-3 items-center md:ml-12 mx-2">
           <div className="flex space-x-1 items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -50,16 +50,16 @@ function Header() {
           </div>
         </div>
       </nav>
-      <div className="sticky top-0 backdrop-blur-lg">
-        <div className="min-h-1 flex items-center justify-between gap-4">
+      <nav className="sticky top-0 backdrop-blur-lg">
+        <div className="min-h-1 md:mx-12 mx-2 flex items-center justify-between gap-4">
           <Image
             src="/image/logo.png"
             alt="logo"
             width={260}
             height={60}
-            className="m-3"
+            className="my-3"
           />
-          <div className="md:flex hidden justify-end gap-5 mx-20 font-bold text-slate-800 text-sm">
+          <div className="md:flex hidden justify-end gap-5 font-bold text-slate-800 text-sm">
             <Link href="#hero">Home</Link>
             <Link href="#about">About us</Link>
             <Link href="#product">Our Product</Link>
@@ -68,7 +68,7 @@ function Header() {
             <Link href="#pembayaran">Pembayaran</Link>
           </div>
         </div>
-      </div>
+      </nav>
     </>
   );
 }

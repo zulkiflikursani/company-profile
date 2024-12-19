@@ -1,5 +1,7 @@
 import Image from "next/image";
 import React from "react";
+import SusunanPengurus from "./SusunanPengurus";
+import Visimisi from "./Visimisi";
 
 function Aboutus() {
   return (
@@ -25,6 +27,8 @@ function Aboutus() {
           </div>
         </div>
       </div>
+      <Visimisi />
+      <SusunanPengurus />
     </section>
   );
 }

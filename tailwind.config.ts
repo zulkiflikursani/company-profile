@@ -15,7 +15,8 @@ export default {
           dark: "#0369a1", // Dark blue
         },
         secondary: {
-          light: "#d97706", // Light orange
+          // light: "#d97706", // Light orange
+          light: "#e5b26f", // Light orange
           DEFAULT: "#e5b26f", // Default orange
           dark: "#d97706", // Dark orange
         },
