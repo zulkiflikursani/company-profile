@@ -3,7 +3,7 @@ import React from "react";
 function Visimisi() {
   return (
     <div className="grid md:grid-cols-2 gap-4 grid-cols-1 text-xl min-h-screen bg-gray-100">
-      <div className="bg-primary-light text-gray-100 text-right p-4 min-h-[300px] md:my-64 my-5">
+      <div className="bg-primary-light text-gray-100 md:text-right text-left p-4 min-h-[300px] md:my-64 my-5">
         <div className="font-hind font-bold text-4xl">Visi Kami</div>
         <div>Terwujudnya Bank Syariah yang Unggul dan Terpercaya</div>
       </div>
