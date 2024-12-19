@@ -8,7 +8,7 @@ function Visimisi() {
         <div>Terwujudnya Bank Syariah yang Unggul dan Terpercaya</div>
       </div>
       <div className="bg-primary-light text-gray-100 text-left p-4 min-h-[300px] md:my-64 my-5">
-        <div className="font-hind font-bold text-4xl">Mis Kami</div>
+        <div className="font-hind font-bold text-4xl">Misi Kami</div>
         <div className="mx-4">
           <ul className="list-disc">
             <li>Menjalankan usaha perbankan yang sehat dan amanah</li>
