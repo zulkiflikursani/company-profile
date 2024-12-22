@@ -1,11 +1,23 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState, useRef } from "react";
 
 function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const handleMouseEnter = () => {
+    setIsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsOpen(false);
+  };
+
   return (
     <>
-      <nav className=" bg-secondary min-h-10 p-2">
+      <nav className="bg-secondary min-h-10 p-2 relative z-10">
         <div className="flex space-x-3 items-center md:ml-12 mx-2">
           <div className="flex space-x-1 items-center">
             <svg
@@ -50,7 +62,7 @@ function Header() {
           </div>
         </div>
       </nav>
-      <nav className="sticky top-0 backdrop-blur-lg">
+      <nav className="sticky top-0 backdrop-blur-lg z-20 pb-2 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-gray-300 after:shadow-md mb-4">
         <div className="min-h-1 md:mx-12 mx-2 flex items-center justify-between gap-4">
           <Image
             src="/image/logo.png"
@@ -60,10 +72,49 @@ function Header() {
             className="my-3"
           />
           <div className="md:flex hidden justify-end gap-5 font-bold text-slate-800 text-sm">
-            <Link href="#hero">Home</Link>
-            <Link href="#about">About us</Link>
-            <Link href="#product">Our Product</Link>
-            <Link href="#news">News</Link>
+            <Link href="/#hero">Home</Link>
+            <Link href="/#about">About us</Link>
+            <Link href="/#product">Our Product</Link>
+            <div
+              className="relative inline-block"
+              ref={dropdownRef}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <button className="flex items-center gap-1">
+                <Link href="/#informasi">Informasi</Link>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                  />
+                </svg>
+              </button>
+              {isOpen && (
+                <div className="absolute top-full left-0 bg-white shadow-md mt-0 rounded-md w-40 z-30 ">
+                  <Link
+                    href="/news"
+                    className="block py-2 px-4 hover:bg-gray-100"
+                  >
+                    Berita
+                  </Link>
+                  <Link
+                    href="/news"
+                    className="block py-2 px-4 hover:bg-gray-100"
+                  >
+                    Publikasi
+                  </Link>
+                </div>
+              )}
+            </div>
             <div className="w-28"></div>
             <Link href="#pembayaran">Pembayaran</Link>
           </div>

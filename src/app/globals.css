@@ -19,3 +19,94 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 } */
+
+ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  padding-left: 20px;
+}
+
+ol {
+  list-style-type: decimal;
+  margin-left: 20px;
+  padding-left: 20px;
+}
+
+li {
+  display: list-item;
+}
+div[contenteditable="false"] {
+  display: inline-block;
+  position: relative;
+}
+
+img {
+  pointer-events: auto; /* Ensure events are captured */
+  cursor: pointer;
+}
+.resizable-image-container {
+  display: inline-block;
+  position: relative;
+  /* tambahkan padding atau margin jika diperlukan */
+}
+
+.header {
+  position: relative;
+  z-index: 10;
+  background-color: lightblue;
+}
+
+.editor {
+  position: relative;
+  z-index: 1;
+  border: 1px solid black;
+  min-height: 300px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+.modal-content {
+  background: white;
+  padding: 20px;
+}
+.resize-handle {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 10px;
+  height: 10px;
+  cursor: se-resize;
+  background-color: blue;
+  border: 1px solid white;
+  /* tambahkan style lain yang dibutuhkan */
+}
+.delete-button {
+  /* tambahkan style lain yang dibutuhkan */
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  color: white;
+  font-size: 10px;
+  transition: all 0.3 ease;
+}
+.editor-container {
+  position: relative;
+  z-index: 1; /* Nilai z-index lebih rendah dari modal */
+}
+.delete-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}

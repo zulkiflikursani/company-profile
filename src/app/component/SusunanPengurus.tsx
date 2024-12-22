@@ -1,14 +1,25 @@
 import Image from "next/image";
 import React from "react";
+import { useInView } from "react-intersection-observer";
 
 function SusunanPengurus() {
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+  });
   return (
-    <div className="min-h-screen flex flex-col w-full justify-center items-center text-center bg-gray-200">
+    <div
+      ref={ref}
+      className="min-h-screen flex flex-col w-full justify-center items-center text-center bg-gray-200"
+    >
       <h1 className="text-4xl text-primary-light font-bold mb-10">
         Susunan Pengurus
       </h1>
       <div className="grid md:grid-cols-5 gap-6 grid-cols-1 mx-5">
-        <div className="bg-white flex flex-col justify-between items-center px-3 py-6  text-center h-full">
+        <div
+          className={`text-center transform transition-all duration-700 delay-300 ${
+            inView ? "translate-x-0" : "-translate-x-full"
+          } bg-white flex flex-col justify-between items-center px-3 py-6  text-center h-full`}
+        >
           <Image
             src="/image/pengurus/1.jpg"
             alt="komisaris utama"
@@ -23,7 +34,11 @@ function SusunanPengurus() {
             <div className="text-sm font-bold">Komisaris Utama</div>
           </div>
         </div>
-        <div className="bg-white flex flex-col justify-between items-center px-3 py-6 text-center h-full">
+        <div
+          className={`text-center transform transition-all duration-700 delay-150 ${
+            inView ? "translate-x-0" : "-translate-x-full"
+          } bg-white flex flex-col justify-between items-center px-3 py-6  text-center h-full`}
+        >
           <Image
             src="/image/pengurus/2.jpg"
             alt="komisaris"
@@ -53,7 +68,11 @@ function SusunanPengurus() {
             <div className="text-sm font-bold">Dewan Pengawas Syariah</div>
           </div>
         </div>
-        <div className="bg-white flex flex-col justify-between items-center px-3 py-6 text-center">
+        <div
+          className={`text-center transform transition-all duration-700 delay-150  ${
+            inView ? "translate-x-0" : "translate-x-full"
+          } bg-white flex flex-col justify-between items-center px-3 py-6  text-center h-full`}
+        >
           <Image
             src="/image/pengurus/4.jpg"
             alt="direktur utama"
@@ -68,7 +87,11 @@ function SusunanPengurus() {
             <div className="text-sm font-bold">Direktur Utama</div>
           </div>
         </div>
-        <div className="bg-white flex flex-col justify-between items-center px-3 py-6 text-center">
+        <div
+          className={`text-center transform transition-all duration-700 delay-300 ${
+            inView ? "translate-x-0" : "translate-x-full"
+          } bg-white flex flex-col justify-between items-center px-3 py-6  text-center h-full`}
+        >
           <Image
             src="/image/pengurus/5.jpg"
             alt="direktur"

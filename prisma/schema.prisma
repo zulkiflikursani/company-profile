@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String
+  email     String   @unique
+  password  String
+  role      String   @default("viewer")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  @@map("users")
+}
+
+model NewsPost {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String   @db.Text
+  authorId  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  @@map("news_posts")
+}
+
+model Category {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  createdAt DateTime @default(now())
+
+  @@map("categories")
+}
+
+model View {
+  id       Int      @id @default(autoincrement())
+  postId   Int
+  viewedAt DateTime @default(now())
+  viewerIp String
+
+  @@map("views")
+}
+
+model File {
+  id Int @id @default(autoincrement())
+
+  originalName String // The original name of the uploaded file
+  filename     String // The filename saved on the server
+  mimeType     String // The MIME type of the file
+  size         Int // File size in bytes
+  url          String // The URL or path to access the file
+  createdAt    DateTime @default(now())
+}
+
+/**
+ * ****  dba986c8-4d18-49c1-839e-f8afaac74fe4  ******
+ */

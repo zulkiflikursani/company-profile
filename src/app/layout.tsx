@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import { Hind } from "next/font/google";
 import "./globals.css";
 import Header from "./component/Header";
-import Hero from "./component/Hero";
-import Aboutus from "./component/Aboutus";
-import Products from "./component/Products";
+
 import Footer from "./component/Footer";
 
 export const metadata: Metadata = {
@@ -25,13 +23,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head></head>
-      <body className={`${hind.variable} antialiased `}>
+      <body
+        className={`${hind.variable} antialiased flex-col flex max-w-screen min-h-screen`}
+      >
         <Header />
-        <Hero />
-        <Aboutus />
-        <Products />
-        <Footer />
         {children}
+        <div className="flex-1 border bottom-1 border-gray-300 my-3"></div>
+        <Footer />
       </body>
     </html>
   );
