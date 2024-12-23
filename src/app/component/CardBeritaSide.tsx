@@ -12,7 +12,7 @@ interface CardBeritaProps {
   height?: number;
   id: number;
 }
-const CardBerita = (props: CardBeritaProps) => {
+const CardBeritaSite = (props: CardBeritaProps) => {
   const sanitizedContent = DOMPurify.sanitize(props.content);
 
   // 2. Hilangkan tag img
@@ -30,7 +30,7 @@ const CardBerita = (props: CardBeritaProps) => {
 
   // 3. Ambil textContent
   const textContent = tempDiv.textContent || tempDiv.innerText;
-  const maxLength = 200;
+  const maxLength = 100;
   const trimmedText =
     textContent.length > maxLength
       ? `${textContent.substring(0, maxLength)}...`
@@ -41,7 +41,7 @@ const CardBerita = (props: CardBeritaProps) => {
         <h2 className="text-xl font-bold mb-2">{props.title}</h2>
       </div>
       <div className="grid grid-cols-6 gap-4 w-full h-full items-center justify-center ">
-        <div className="md:col-span-1 col-span-2 w-full  h-full border border-gray-300">
+        <div className="md:col-span-2 col-span-2 w-full  h-full border border-gray-300">
           <div className="flex w-full h-full justify-center items-center ">
             <Image
               src={props.thumbnail}
@@ -52,13 +52,13 @@ const CardBerita = (props: CardBeritaProps) => {
             />
           </div>
         </div>
-        <div className="md:col-span-5 col-span-4 flex flex-col w-full h-full">
+        <div className="md:col-span-4 col-span-4 flex flex-col w-full h-full">
           {/* <div dangerouslySetInnerHTML={{ __html: trimmedContent }} /> */}
-          <div className="h-full ">{trimmedText}</div>
+          <div className="h-full text-sm ">{trimmedText}</div>
           <div className="flex  w-full justify-end">
             <Link
               href={`news/details/${props.id}`}
-              className="bg-primary-light rounded-full text-white py-1 text-sm px-4"
+              className="bg-primary-light rounded-full text-white py-1 text-[10px] px-2"
             >
               Detail
             </Link>
@@ -69,4 +69,4 @@ const CardBerita = (props: CardBeritaProps) => {
   );
 };
 
-export default CardBerita;
+export default CardBeritaSite;

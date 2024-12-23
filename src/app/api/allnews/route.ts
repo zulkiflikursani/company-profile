@@ -13,7 +13,7 @@ export async function GET(req: Request) {
   const prisma = new PrismaClient({ log: ["query"] });
 
   const { searchParams } = new URL(req.url);
-  const page = parseInt(searchParams.get("page") || "1", 3);
+  const page = parseInt(searchParams.get("page") || "1", 10);
   const perPage = 3;
 
   try {

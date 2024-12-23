@@ -3,7 +3,12 @@ import { useState } from "react";
 import TextEditor from "../component/TextEditor";
 
 export default function CreateNewsPage() {
-  const [form, setForm] = useState({ title: "", content: "", authorid: 1 });
+  const [form, setForm] = useState({
+    title: "",
+    content: "",
+    tgl_berita: "",
+    authorid: 1,
+  });
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -19,7 +24,7 @@ export default function CreateNewsPage() {
 
     if (data.success) {
       setMessage("News created successfully!");
-      setForm({ title: "", content: "", authorid: 1 });
+      setForm({ title: "", content: "", tgl_berita: "", authorid: 1 });
     } else {
       setMessage(`Error: ${data.message}`);
     }
@@ -40,7 +45,16 @@ export default function CreateNewsPage() {
               type="text"
               value={form.title}
               onChange={(e) => setForm({ ...form, title: e.target.value })}
-              className="w-full p-2 pl-10 text-sm text-gray-700 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-500"
+              className="w-full p-2  text-sm text-gray-700 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-500"
+            />
+          </label>
+          <label className="block mb-2">
+            <span className="text-gray-700 font-bold">Tanggal Berita:</span>
+            <input
+              type="date"
+              value={form.tgl_berita}
+              onChange={(e) => setForm({ ...form, tgl_berita: e.target.value })}
+              className="w-full p-2  text-sm text-gray-700 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-500"
             />
           </label>
           <label className="block mb-2">

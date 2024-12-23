@@ -6,8 +6,8 @@ export async function POST(request: NextRequest) {
   const prisma = new PrismaClient({ log: ["query"] });
   try {
     const body = await request.json();
-    const { title, content, authorid } = body;
-    if (!title || !content || !authorid) {
+    const { title, content, authorid, tgl_berita } = body;
+    if (!title || !content || !authorid || !tgl_berita) {
       return NextResponse.json(
         { success: false, message: "Missing required fields " + authorid },
         { status: 400 }
@@ -17,6 +17,7 @@ export async function POST(request: NextRequest) {
       data: {
         title: title,
         content: content,
+        tgl_berita: new Date(tgl_berita),
         authorId: authorid,
       },
     });

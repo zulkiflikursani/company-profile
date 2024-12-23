@@ -132,7 +132,14 @@ const Tiptap: React.FC<TiptapProps> = ({
           handleSetLink={handleSetLink}
         />
       )}
-      <EditorContent className="border min-h-[300px]" editor={editorInstance} />
+      <div className="overflow-y-auto max-h-[400px]">
+        {" "}
+        {/* Scrollable container here */}
+        <EditorContent
+          className="border min-h-[300px] "
+          editor={editorInstance}
+        />
+      </div>
       {toolbarPosition === "bottom" && (
         <TextEditorMenuBar
           editor={editorInstance}

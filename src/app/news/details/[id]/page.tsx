@@ -1,6 +1,16 @@
+import CardBeritaSite from "@/app/component/CardBeritaSide";
+import { formatDateIndonesia } from "@/app/lib/formatDateIndonesia";
+import { getAuthor } from "@/app/lib/getAuthor";
+import { getNewsList } from "@/app/lib/getNewsList";
 import { getData } from "@/app/lib/NewsData";
-import Link from "next/link";
 
+interface Post {
+  id: number;
+  title: string;
+  content: string;
+  tgl_berita: string;
+  thumbnailUrl: string;
+}
 export default async function NewsDetailPage({
   params,
 }: {
@@ -18,6 +28,9 @@ export default async function NewsDetailPage({
     return <p>Data not found</p>;
   }
   const post = result.data;
+  const author = await getAuthor(post.id.toString());
+  const list_berita = await getNewsList();
+
   return (
     <div className="mx-4">
       <div className="flex justify-center items-center w-full ">
@@ -29,28 +42,29 @@ export default async function NewsDetailPage({
             <h1 className=" text-[40px] font-bold text-left mb-4 leading-tight">
               {post.title}
             </h1>
-            <p>Author: Nama Author</p>
-            <p>Tanggal publikasi: 22 Desember 2024</p>
+            <p>Author: {author}</p>
+            <p>Tanggal publikasi: {formatDateIndonesia(post.tgl_berita)}</p>
             <div dangerouslySetInnerHTML={{ __html: post.content }} />
           </div>
         </div>
         <div className="md:col-span-3 border-gray-300 border">
           <div className="w-full"></div>
           <h1 className=" text-[20px] text-center font-bold uppercase">
-            Publikasi
+            LIST BERITA
           </h1>
           <div className="w-full">
-            <ul>
-              <li>
-                <Link href="/news">Laporan Keuangan Bulan November 2024</Link>
-              </li>
-              <li>
-                <Link href="/news">Laporan Keuangan Bulan Oktober 2024</Link>
-              </li>
-              <li>
-                <Link href="/news">Laporan Keuangan Bulan September 2024</Link>
-              </li>
-            </ul>
+            {list_berita.data?.map((item: Post) => {
+              return (
+                <div key={item.id}>
+                  <CardBeritaSite
+                    title={item.title}
+                    content={item.content}
+                    id={item.id}
+                    thumbnail={item.thumbnailUrl}
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

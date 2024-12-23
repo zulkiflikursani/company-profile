@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Hind } from "next/font/google";
+import "../../app/news.css";
 
 export const metadata: Metadata = {
   title: "HIK Fajar Nitro",
