@@ -13,7 +13,7 @@ interface CardPublikasiProps {
 }
 const CardPublikasi = (props: CardPublikasiProps) => {
   const sanitizedContent = DOMPurify.sanitize(props.content);
-  const DEFAULT_IMAGE_URL = "/uploads/default-thumbnail.png"; // Ganti dengan URL gambar default Anda
+  const DEFAULT_IMAGE_URL = "/image/default-thumbnail.jpg"; // Ganti dengan URL gambar default Anda
 
   // 2. Hilangkan tag img
   // const contentWithoutImages = sanitizedContent.replace(/<img[^>]*>/g, "");

@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import TextEditor from "../component/TextEditor";
+import TextEditor from "../../component/TextEditor";
 
 export default function CreateNewsPage() {
   const [form, setForm] = useState({
@@ -37,7 +37,7 @@ export default function CreateNewsPage() {
   return (
     <div className="min-h-screen bg-gray-200">
       <div className="w-full  p-4 bg-white rounded shadow-md">
-        <h2 className="text-2xl font-bold mb-4 text-center">Create New Post</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center">Input Berita</h2>
         <form onSubmit={handleSubmit} className="flex flex-col">
           <label className="block mb-2">
             <span className="text-gray-700 font-bold">Title:</span>
