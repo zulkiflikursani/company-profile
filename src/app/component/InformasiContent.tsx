@@ -11,12 +11,20 @@ interface DataType {
   content: string;
   thumbnailUrl: string;
 }
-
+interface DataTypePublish {
+  id: number;
+  title: string;
+  url: string;
+  // content: string;
+  thumbnailUrl: string;
+}
 const InformasiContent = () => {
   const [data, setData] = useState<DataType[] | null>(null);
+  const [dataPublish, setDataPublish] = useState<DataTypePublish[] | null>(
+    null
+  );
 
   const searchParams = useSearchParams();
-
   const page = parseInt(searchParams.get("page") || "1", 5);
   useEffect(() => {
     const fetchData = async () => {
@@ -33,19 +41,33 @@ const InformasiContent = () => {
         console.log(`Error: ${data.message}`);
       }
     };
+    const fetchDataPublish = async () => {
+      const response = await fetch("/api/allpublish?page=" + page, {
+        method: "GET", // Mengubah metode menjadi GET
+        headers: { "Content-Type": "application/json" },
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setDataPublish(data.data);
+      } else {
+        console.log(`Error: ${data.message}`);
+      }
+    };
     fetchData();
+    fetchDataPublish();
   }, [page]); // Menggunakan array kosong sebagai dependencies
 
-  if (!data) {
+  if (!data && !dataPublish) {
     return (
-      <div className=" flex justify-center items-center">
+      <div className="min-h-screen flex justify-center items-center">
         <p className="-mt-32">Loading...</p>
       </div>
     );
   }
-  if (data.length === 0) {
+  if (data?.length === 0 && dataPublish?.length === 0) {
     return (
-      <div className=" flex justify-center items-center">
+      <div className="min-h-screen flex justify-center items-center">
         <p className="-mt-32">No data available</p>
       </div>
     );
@@ -88,12 +110,22 @@ const InformasiContent = () => {
                   Publikasi
                 </h1>
                 <div className="w-full">
-                  <CardPublikasi
-                    title={"Publikasi 1"}
-                    content={"Laporan Keuangan Desember 2024"}
-                    id={0}
-                  />
-                  <CardPublikasi
+                  {!dataPublish ? (
+                    <p>No data available</p>
+                  ) : (
+                    dataPublish.map((item: DataTypePublish, index: number) => (
+                      <div key={index}>
+                        <CardPublikasi
+                          url={item.url}
+                          title={"Publikasi " + (index + 1)}
+                          content={item.title}
+                          id={0}
+                        />
+                      </div>
+                    ))
+                  )}
+
+                  {/* <CardPublikasi
                     title={"Publikasi 2"}
                     content={"Laporan Keuangan November 2024"}
                     id={0}
@@ -102,7 +134,7 @@ const InformasiContent = () => {
                     title={"Publikasi 1"}
                     content={"Laporan Keuangan Septermber 2024"}
                     id={0}
-                  />
+                  /> */}
                 </div>
               </div>
             </div>

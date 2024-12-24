@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import DOMPurify from "dompurify";
 
@@ -7,6 +6,7 @@ interface CardPublikasiProps {
   title: string;
   content: string;
   thumbnail?: string;
+  url: string;
   width?: number;
   height?: number;
   id: number;
@@ -15,16 +15,6 @@ const CardPublikasi = (props: CardPublikasiProps) => {
   const sanitizedContent = DOMPurify.sanitize(props.content);
   const DEFAULT_IMAGE_URL = "/image/default-thumbnail.jpg"; // Ganti dengan URL gambar default Anda
 
-  // 2. Hilangkan tag img
-  // const contentWithoutImages = sanitizedContent.replace(/<img[^>]*>/g, "");
-
-  // 3. Potong String dan Tambahkan Elipsis
-  // const maxLength = 100;
-  // const trimmedContent =
-  //   contentWithoutImages.length > maxLength
-  //     ? `${contentWithoutImages.substring(0, maxLength)}...`
-  //     : contentWithoutImages;
-  // 2. Buat elemen div sementara
   const tempDiv = document.createElement("div");
   tempDiv.innerHTML = sanitizedContent;
 
@@ -56,12 +46,13 @@ const CardPublikasi = (props: CardPublikasiProps) => {
           {/* <div dangerouslySetInnerHTML={{ __html: trimmedContent }} /> */}
           <div className="h-full ">{trimmedText}</div>
           <div className="flex  w-full justify-end">
-            <Link
-              href={`news/details/${props.id}`}
+            <a
+              href={props.url}
+              target="_blank"
               className="bg-primary-light rounded-full text-white py-1 text-sm px-4"
             >
               Detail
-            </Link>
+            </a>
           </div>
         </div>
       </div>

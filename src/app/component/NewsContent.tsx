@@ -14,8 +14,8 @@ interface DataType {
 interface DataTypePublish {
   id: number;
   title: string;
-  // content: string;
-  thumbnailUrl: string;
+  content: string;
+  url: string;
 }
 function NewsContent() {
   const [data, setData] = useState<DataType[] | null>(null);
@@ -51,6 +51,7 @@ function NewsContent() {
 
       const data = await response.json();
       if (data.success) {
+        // console.log(data.data);
         setDataPublish(data.data);
         setTotalPagePublish(data.totalPage);
       } else {
@@ -58,6 +59,7 @@ function NewsContent() {
       }
     };
     fetchData();
+
     fetchDataPublish();
   }, [page]); // Menggunakan array kosong sebagai dependencies
 
@@ -147,7 +149,9 @@ function NewsContent() {
                         <CardPublikasi
                           title={"Publikasi " + (index + 1)}
                           content={item.title}
-                          id={0}
+                          // thumbnail={item.thumbnailUrl}
+                          id={item.id}
+                          url={item.url}
                         />
                       </div>
                     ))
