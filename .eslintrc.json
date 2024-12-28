@@ -1,7 +1,7 @@
 {
-"extends": "next/core-web-vitals",
-"rules": {
-    "@typescript-eslint/no-unused-vars": "off"
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "react/no-unescaped-entities": "off", // Example disabling a React rule.
+    "@typescript-eslint/no-explicit-any": "warn" // Change a rule to warn instead of error
+  }
 }
-}
-

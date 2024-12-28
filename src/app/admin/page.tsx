@@ -1,3 +1,5 @@
+"use client";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 
@@ -7,17 +9,25 @@ const page = () => {
       <h3 className="text-4xl font-bold mb-10">Admin Dashboard</h3>
       <div className="grid grid-cols-2 gap-4 text-center">
         <Link
-          href={"/admin/create-news"}
+          href={"/admin/news"}
           className="bg-primary-light p-4  rounded-lg text-3xl text-gray-100"
         >
-          <h3>Input Berita`</h3>
+          <h3>Input Berita</h3>
         </Link>
         <Link
-          href={"/admin/create-publish"}
+          href={"/admin/publish"}
           className="bg-primary-light p-4  rounded-lg text-3xl text-gray-100"
         >
           <h3>Input Publish</h3>
         </Link>
+        <button
+          onClick={async () => {
+            await signOut();
+          }}
+          className="bg-primary-light p-4  rounded-lg text-3xl text-gray-100"
+        >
+          Logout
+        </button>
       </div>
     </div>
   );
