@@ -32,7 +32,7 @@ export default function UpadateNewsPage({
 
     try {
       const response = await fetch(`/api/news/${params.id}/update`, {
-        method: "POST",
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
