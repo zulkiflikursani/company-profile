@@ -39,6 +39,7 @@ export async function PUT(request: NextRequest): Promise<ApiResponse<unknown>> {
     }
     console.log(body);
     // const id = parseInt(idString, 10);
+    //ok
 
     if (isNaN(id)) {
       return NextResponse.json(
