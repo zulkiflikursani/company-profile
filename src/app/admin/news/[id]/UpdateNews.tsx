@@ -4,7 +4,7 @@ import TextEditor from "@/app/component/TextEditor";
 import { useRouter } from "next/navigation";
 
 interface FormData {
-  //   id: number;
+  id: number;
   title: string;
   content: string;
   tgl_berita: string;
@@ -17,7 +17,7 @@ export default function UpadateNewsPage({
   params: { id: string };
 }) {
   const [form, setForm] = useState<FormData>({
-    // id: 0,
+    id: 0,
     title: "",
     content: "",
     tgl_berita: "",
@@ -31,7 +31,7 @@ export default function UpadateNewsPage({
     e.preventDefault();
 
     try {
-      const response = await fetch(`/api/news/${params.id}/update`, {
+      const response = await fetch(`/api/news/update`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -40,9 +40,9 @@ export default function UpadateNewsPage({
       const data = await response.json();
 
       if (data.success) {
-        setMessage("News created successfully!");
+        setMessage("News updated successfully!");
         setForm({
-          // id: 0,
+          id: 0,
           title: "",
           content: "",
           tgl_berita: "",

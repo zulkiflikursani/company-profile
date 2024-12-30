@@ -5,34 +5,40 @@ import { NextRequest, NextResponse } from "next/server";
 const prisma = new PrismaClient({ log: ["query"] });
 
 interface NewsPostBody {
+  id: number;
   title?: string;
   content?: string;
-  authorId?: number;
+  authorId?: number | string;
   tgl_berita?: string;
 }
+
 interface ErrorResponse {
+  success: false;
   message: string;
 }
 
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-): Promise<NextResponse<{ success: boolean; data?: unknown } | ErrorResponse>> {
+interface SuccessResponse<T> {
+  success: true;
+  data: T;
+}
+
+type ApiResponse<T> =
+  | NextResponse<SuccessResponse<T>>
+  | NextResponse<ErrorResponse>;
+
+export async function PUT(request: NextRequest): Promise<ApiResponse<unknown>> {
   try {
     const body = (await request.json()) as NewsPostBody;
-    const { title, content, authorId: authorid, tgl_berita } = body;
-    const idString = await params.id;
+    const { id, title, content, authorId: authorid, tgl_berita } = body;
 
-    console.log("body", body);
-
-    if (!idString) {
+    if (!id) {
       return NextResponse.json(
         { success: false, message: "Missing ID parameter" },
         { status: 400 }
       );
     }
-
-    const id = parseInt(idString, 10);
+    console.log(body);
+    // const id = parseInt(idString, 10);
 
     if (isNaN(id)) {
       return NextResponse.json(
@@ -40,18 +46,26 @@ export async function PUT(
         { status: 400 }
       );
     }
-
-    if (!title || !content || !authorid || !tgl_berita) {
+    if (typeof title !== "string" || title.trim() === "") {
       return NextResponse.json(
-        {
-          success: false,
-          message: "Missing required fields" + authorid + tgl_berita,
-        },
+        { success: false, message: "Title is required" },
         { status: 400 }
       );
     }
-
-    const authorId = authorid;
+    if (typeof content !== "string" || content.trim() === "") {
+      return NextResponse.json(
+        { success: false, message: "Content is required" },
+        { status: 400 }
+      );
+    }
+    if (typeof tgl_berita !== "string" || tgl_berita.trim() === "") {
+      return NextResponse.json(
+        { success: false, message: "Date is required" },
+        { status: 400 }
+      );
+    }
+    const authorId =
+      typeof authorid === "number" ? authorid : parseInt(String(authorid), 10);
 
     if (isNaN(authorId)) {
       return NextResponse.json(
@@ -64,7 +78,7 @@ export async function PUT(
 
     if (isNaN(tglBeritaDate.getTime())) {
       return NextResponse.json(
-        { success: false, message: "Invalid Tgl Berita" },
+        { success: false, message: "Invalid Date Format" },
         { status: 400 }
       );
     }
@@ -80,19 +94,12 @@ export async function PUT(
       },
     });
     return NextResponse.json({ success: true, data: newsPost });
-  } catch (error: unknown) {
+  } catch (error) {
     console.error("Update News Post Error:", error);
 
-    if (error instanceof Error) {
-      return NextResponse.json(
-        { success: false, message: error.message },
-        { status: 500 }
-      );
-    } else {
-      return NextResponse.json(
-        { success: false, message: "Internal Server Error" },
-        { status: 500 }
-      );
-    }
+    return NextResponse.json(
+      { success: false, message: (error as string) || "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }
