@@ -18,8 +18,8 @@ export async function getData(postId: number): Promise<ApiResponse> {
       baseUrl = window.location.origin;
     } else {
       baseUrl =
-        process.env.NEXT_PUBLIC_URL ||
-        process.env.VERCEL_URL ||
+        process.env.NEXTAUTH_URL ||
+        // process.env.VERCEL_URL ||
         "http://localhost:3000";
     }
     const apiUrl = `${baseUrl}/api/detail?id=${postId}`;
