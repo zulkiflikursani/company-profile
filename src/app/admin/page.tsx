@@ -12,13 +12,13 @@ const page = () => {
           href={"/admin/news"}
           className="bg-primary-light p-4  rounded-lg text-3xl text-gray-100"
         >
-          <h3>Input Berita</h3>
+          <h3>Berita</h3>
         </Link>
         <Link
           href={"/admin/publish"}
           className="bg-primary-light p-4  rounded-lg text-3xl text-gray-100"
         >
-          <h3>Input Publish</h3>
+          <h3>Publish</h3>
         </Link>
         <button
           onClick={async () => {

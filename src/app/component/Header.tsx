@@ -1,4 +1,5 @@
 "use client";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useRef } from "react";
@@ -6,6 +7,8 @@ import React, { useState, useRef } from "react";
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  const session = useSession();
 
   const handleMouseEnter = () => {
     setIsOpen(true);
@@ -72,6 +75,11 @@ function Header() {
             className="my-3"
           />
           <div className="md:flex hidden justify-end gap-5 font-bold text-slate-800 text-sm">
+            {session.data?.user ? (
+              <Link href="/admin">Admin Dashboard</Link>
+            ) : (
+              ""
+            )}
             <Link href="/#hero">Home</Link>
             <Link href="/#about">About us</Link>
             <Link href="/#product">Our Product</Link>

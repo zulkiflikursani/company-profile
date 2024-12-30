@@ -36,7 +36,20 @@ function NewsContent() {
     };
     fetchData();
   }, [page]);
-
+  if (!data) {
+    return (
+      <div className="min-h-screen flex justify-center items-center">
+        <p className="-mt-32">Loading...</p>
+      </div>
+    );
+  }
+  if (data?.length === 0) {
+    return (
+      <div className="min-h-screen flex justify-center items-center">
+        <p className="-mt-32">No data available</p>
+      </div>
+    );
+  }
   const handlePageChange = (newPage: number) => {
     const newSearchParams = new URLSearchParams(searchParams.toString());
     newSearchParams.set("page", String(newPage));
