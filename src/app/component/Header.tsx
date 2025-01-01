@@ -3,12 +3,17 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useRef } from "react";
+import MobileMenu from "./MobileMenu"; // Import MobileMenu component
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
-
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for the mobile menu
   const session = useSession();
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   const handleMouseEnter = () => {
     setIsOpen(true);
@@ -65,8 +70,8 @@ function Header() {
           </div>
         </div>
       </nav>
-      <nav className="sticky top-0 backdrop-blur-lg z-20 pb-2 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-gray-300 after:shadow-md mb-4">
-        <div className="min-h-1 md:mx-12 mx-2 flex items-center justify-between gap-4">
+      <nav className="sticky top-0 backdrop-blur-lg z-20 pb-2 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-gray-300 after:shadow-md mb-4 min-h-10">
+        <div className="min-h-10 md:mx-12 mx-2 flex items-center justify-between gap-4">
           <Image
             src="/image/logo.png"
             alt="logo"
@@ -74,6 +79,25 @@ function Header() {
             height={60}
             className="my-3"
           />
+          <button
+            onClick={toggleMobileMenu}
+            className="md:hidden  p-2 focus:outline-none relative"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
+            </svg>
+          </button>
           <div className="md:flex hidden justify-end gap-5 font-bold text-slate-800 text-sm">
             {session.data?.user ? (
               <Link href="/admin">Admin Dashboard</Link>
@@ -127,6 +151,7 @@ function Header() {
             <Link href="#pembayaran">Pembayaran</Link>
           </div>
         </div>
+        <MobileMenu isOpen={isMobileMenuOpen} onClose={toggleMobileMenu} />
       </nav>
     </>
   );

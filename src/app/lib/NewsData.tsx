@@ -3,6 +3,7 @@ interface Post {
   title: string;
   content: string;
   tgl_berita: string;
+  authorId: number;
 }
 
 interface ApiResponse {

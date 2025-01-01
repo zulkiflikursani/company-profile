@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 // import DOMPurify from "dompurify";
 // import CardBerita from "./CardBerita";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 // import Link from "next/link";
 import CardPublikasi from "./CardPublikasi";
 import Link from "next/link";
@@ -18,9 +18,12 @@ const InformasiContent = () => {
   const [dataPublish, setDataPublish] = useState<DataTypePublish[] | null>(
     null
   );
+  const [totalPage, setTotalPage] = useState<number>(1); // New state for total pages
 
   const searchParams = useSearchParams();
   const page = parseInt(searchParams.get("page") || "1", 5);
+  const router = useRouter();
+
   useEffect(() => {
     const fetchDataPublish = async () => {
       const response = await fetch("/api/allpublish?page=" + page, {
@@ -31,6 +34,7 @@ const InformasiContent = () => {
       const data = await response.json();
       if (data.success) {
         setDataPublish(data.data);
+        setTotalPage(data.totalPage);
       } else {
         console.log(`Error: ${data.message}`);
       }
@@ -54,6 +58,12 @@ const InformasiContent = () => {
     );
   }
 
+  const handlePageChange = (newPage: number) => {
+    const newSearchParams = new URLSearchParams(searchParams.toString());
+    newSearchParams.set("page", String(newPage));
+    router.push(`/admin/publish?${newSearchParams.toString()}`);
+  };
+
   return (
     <section id="informasi" className="min-h-screen flex items-center">
       <div className="mx-6">
@@ -61,7 +71,7 @@ const InformasiContent = () => {
           <h1 className=" text-[50px] uppercase  text-center ">Informasi</h1>
         </div>
         <div className="grid md:grid-cols-12 grid-cols-1 gap-2 ">
-          <div className="md:col-span-12 border-gray-300 bg-gray-50">
+          <div className="md:col-span-12 border-gray-300 min-h-screen bg-gray-50">
             <div className="grid grid-cols-1 gap-1 w-12/12 mx-auto">
               <div className="w-full ">
                 <h1 className=" text-[20px] font-bold uppercase text-center ">
@@ -90,17 +100,24 @@ const InformasiContent = () => {
                       </div>
                     ))
                   )}
-
-                  {/* <CardPublikasi
-                    title={"Publikasi 2"}
-                    content={"Laporan Keuangan November 2024"}
-                    id={0}
-                  />
-                  <CardPublikasi
-                    title={"Publikasi 1"}
-                    content={"Laporan Keuangan Septermber 2024"}
-                    id={0}
-                  /> */}
+                </div>
+                {/* Pagination Buttons */}
+                <div className="flex justify-center mt-8 space-x-2">
+                  {Array.from({ length: totalPage }, (_, i) => i + 1).map(
+                    (pageNumber) => (
+                      <button
+                        key={pageNumber}
+                        onClick={() => handlePageChange(pageNumber)}
+                        className={`px-4 py-2 rounded border ${
+                          pageNumber === page
+                            ? "bg-primary-light text-white"
+                            : "bg-white text-black"
+                        }`}
+                      >
+                        {pageNumber}
+                      </button>
+                    )
+                  )}
                 </div>
               </div>
             </div>

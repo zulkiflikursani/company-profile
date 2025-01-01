@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -64,51 +63,55 @@ export default function UpdatePublish({ params }: { params: { id: string } }) {
     fetchNews();
   }, [params.id, router]);
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setForm({ ...form, file: e.target.files[0] });
-      console.log("file selected");
-    } else {
-      console.log("No file selected");
-      setForm({ ...form, file: null });
-    }
-  };
+  // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files && e.target.files.length > 0) {
+  //     setForm({ ...form, file: e.target.files[0] });
+  //     console.log("file selected");
+  //   } else {
+  //     console.log("No file selected");
+  //     setForm({ ...form, file: null });
+  //   }
+  // };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.file) {
-      setUploadStatus("No file selected");
-      return;
-    }
+    // if (!form.file) {
+    //   setUploadStatus("No file selected");
+    //   return;
+    // }
 
     try {
       const formData = new FormData();
       formData.append("title", form.title);
       formData.append("tgl_publish", form.tgl_publish);
       formData.append("authorId", String(form.authorId));
-      formData.append("file", form.file);
+      formData.append("id", String(params.id));
 
-      const res = await fetch("/api/publish", {
-        method: "POST",
+      // formData.append("file", form.file);
+
+      const res = await fetch("/api/publish/update", {
+        method: "PUT",
         body: formData,
       });
       if (!res.ok) {
         const errorData = await res.json();
-        throw new Error(errorData.message || "Upload failed");
+        throw new Error(errorData.message || "Update failed");
       }
       const data: ApiResponse = await res.json();
 
       if (data.success) {
         setForm({ title: "", file: null, tgl_publish: "", authorId: 1 });
-        setUploadStatus("Upload successful!");
+        setUploadStatus("Update successful!");
+        router.push("/admin/publish");
+
         // setUploadedFileUrl(data.data?.url || "");
       } else {
-        setUploadStatus(`Upload failed: ${data.message}`);
+        setUploadStatus(`Update failed: ${data.message}`);
       }
     } catch (error: Error | unknown) {
       console.error(error);
       setUploadStatus(
-        `An error occurred during upload: ${(error as Error).message}`
+        `An error occurred during update: ${(error as Error).message}`
       );
     }
   };
@@ -171,7 +174,7 @@ export default function UpdatePublish({ params }: { params: { id: string } }) {
             {message && <p className="text-red-500 text-sm mt-2">{message}</p>}
             <button
               type="submit"
-              disabled={!form.file}
+              disabled={!form.title}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:bg-gray-500"
             >
               Submit

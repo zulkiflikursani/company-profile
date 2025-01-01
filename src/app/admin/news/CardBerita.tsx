@@ -1,8 +1,9 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import DOMPurify from "dompurify";
+import ConfirmationModal from "@/app/component/ConfirmModal";
 
 interface CardBeritaProps {
   title: string;
@@ -35,8 +36,41 @@ const CardBerita = (props: CardBeritaProps) => {
     textContent.length > maxLength
       ? `${textContent.substring(0, maxLength)}...`
       : textContent;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  async function deleteBerita(id: number) {
+    try {
+      const response = await fetch(`/api/news/delete`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        body: JSON.stringify({ id }),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Item deleted successfully:", data);
+        window.location.reload();
+      } else {
+        const errorData = await response.json();
+        console.error("Error deleting item:", errorData);
+      }
+    } catch (error) {
+      console.error("Error during delete:", error);
+    }
+    setIsModalOpen(false);
+  }
+  const handleDeleteClick = () => {
+    setIsModalOpen(true);
+  };
   return (
     <div className=" shadow-md p-4 h-full flex flex-col justify-center items-center w-full ">
+      <ConfirmationModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={() => deleteBerita(props.id)}
+        title="Konfirmasi"
+        message="Apakah anda yakin apakan menghapus data ini?"
+      />
       <div className="flex w-full  justify-start  items-end border-b-2 mb-2">
         <h2 className="text-xl font-bold mb-2">{props.title} </h2>
       </div>
@@ -55,7 +89,13 @@ const CardBerita = (props: CardBeritaProps) => {
         <div className="md:col-span-5 col-span-4 flex flex-col w-full h-full">
           {/* <div dangerouslySetInnerHTML={{ __html: trimmedContent }} /> */}
           <div className="h-full ">{trimmedText}</div>
-          <div className="flex  w-full justify-end">
+          <div className="flex  w-full justify-end gap-2">
+            <button
+              onClick={handleDeleteClick}
+              className="bg-orange-500 rounded-full text-white py-1 text-sm px-4"
+            >
+              Hapus
+            </button>
             <Link
               href={`news/${props.id}`}
               className="bg-primary-light rounded-full text-white py-1 text-sm px-4"

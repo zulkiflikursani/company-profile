@@ -28,7 +28,7 @@ export default async function NewsDetailPage({
     return <p>Data not found</p>;
   }
   const post = result.data;
-  const author = await getAuthor(post.id.toString());
+  const author = await getAuthor(result.data.authorId.toString());
   const list_berita = await getNewsList();
 
   return (
