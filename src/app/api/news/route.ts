@@ -16,12 +16,18 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+    if (!session?.user.id) {
+      return NextResponse.json(
+        { success: false, message: "User ID is missing" },
+        { status: 400 }
+      );
+    }
     const newsPost = await prisma.newsPost.create({
       data: {
         title: title,
         content: content,
         tgl_berita: new Date(tgl_berita),
-        authorId: session?.user?.id,
+        authorId: parseInt(session.user.id, 10),
       },
     });
 

@@ -46,7 +46,8 @@ export const authOptions: NextAuthOptions = {
       return token;
     },
     async session({ session, token }) {
-      session.user = token; // the token data to the session
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      session.user = token as any; // Pass the token data to the session
       return session;
     },
     async redirect({ url, baseUrl }) {
