@@ -57,8 +57,8 @@ function NewsContent() {
   };
 
   return (
-    <div className="px-10 w-full">
-      <div className="px-10 w-full">
+    <div className="md:px-10 px-1 w-full">
+      <div className="md:px-10 px-1 w-full">
         <div className="flex  w-full justify-center items-center  ">
           <h1 className=" text-[50px] uppercase  text-center ">Informasi</h1>
         </div>

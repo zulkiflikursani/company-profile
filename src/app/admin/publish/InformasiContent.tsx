@@ -66,7 +66,7 @@ const InformasiContent = () => {
 
   return (
     <section id="informasi" className="min-h-screen flex items-center">
-      <div className="mx-6">
+      <div className="md:mx-6 mx-1">
         <div className="flex justify-center items-center w-full ">
           <h1 className=" text-[50px] uppercase  text-center ">Informasi</h1>
         </div>
