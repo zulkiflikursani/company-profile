@@ -1,0 +1,88 @@
+{
+  "aboutUs": {
+    "title": "Tentang Kami 2",
+    "description": "Tim kami terdiri dari akuntan bersertifikat. Manreka Accounting membantu Anda menangani masalah akuntansi dengan cara yang paling mudah diakses dan nyaman."
+  },
+  "visiMisi": {
+    "title": "Visi dan Misi",
+    "visi": [
+      "Terwujudnya Bank Syariah yang Unggul dan Terpercaya"
+    ],
+    "misi": [
+      "Menjalankan usaha perbankan yang sehat dan amanah 222",
+      "Meberikan Pelayanan yang terbaik dan islami",
+      "Berperan aktif dalam pengembangan dunia usaha dan peningkatan kesejateraan masyarakat",
+      "Meningkatkan kemakmuran pemegang saham, pengurus dan karyawan",
+      "Menjalankan misi dakwah yang rahmatan lil alamin"
+    ]
+  },
+  "footercontent": {
+    "description": "Tim kami terdiri dari akuntan bersertifikat. Manreka Accounting membantu Anda menangani masalah akuntansi dengan cara yang paling mudah diakses dan nyaman."
+  },
+  "contact": {
+    "title": "Hubungi Kami",
+    "description": "Hubungi kami melalui kontak di bawah ini untuk pertanyaan atau pertukaran."
+  },
+  "susunanPengurus": {
+    "title": "pengurus",
+    "pengurus": [
+      {
+        "img": "/image/pengurus/1.jpg",
+        "name": "Muhammad Nur Alfatah",
+        "position": "Komisaris Utama"
+      },
+      {
+        "img": "/image/pengurus/2.jpg",
+        "name": "Arifin Abdullah",
+        "position": "CTO"
+      },
+      {
+        "img": "/image/pengurus/3.jpg",
+        "name": "Prof. Dr. Muhammad Nur Alfatah",
+        "position": "Dewan Pengawas Syariah"
+      },
+      {
+        "img": "http://localhost:3000/image/products/Product-4.png",
+        "name": "Gusmi Arni Saleh",
+        "position": "Direktur Utama"
+      },
+      {
+        "img": "/image/pengurus/5.jpg",
+        "name": "Amiruddin",
+        "position": "Direktur"
+      }
+    ]
+  },
+  "products": {
+    "title": "Our Product",
+    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem quaerat accusamus consequatur quidem necessitatibus nihil perferendis. Voluptates, id esse. Aliquid rem, delectus temporibus, mollitia nostrum, culpa animi eum eligendi adipisci fugiat accusamus doloribus quis accusantium ab at unde dolorum possimus.",
+    "products": [
+      {
+        "img": "/image/products/product-1.png",
+        "name": "Tabuangan",
+        "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius, mollitia."
+      },
+      {
+        "img": "/image/products/product-2.png",
+        "name": "Pembiayaan",
+        "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius, mollitia."
+      },
+      {
+        "img": "/image/products/product-3.png",
+        "name": "Deposito",
+        "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius, mollitia."
+      },
+      {
+        "img": "http://localhost:3000/image/products/Product-4.jpg",
+        "name": "tes",
+        "description": "tes"
+      }
+    ]
+  },
+  "moreinfo": {
+    "alamat": "Jl. Kuningan Raya No. 123, Kuningan, Kota Jakarta Barat, DKI Jakarta 12345",
+    "nohp": "+62853 9941 7738",
+    "jam-operasi": "Senin - Jumat: 09:00 - 17:00",
+    "email": "bprshik_mks@yahoo.com"
+  }
+}
