@@ -1,4 +1,5 @@
 export interface JsonData {
+  logo: { imgurl: string };
   aboutUs: {
     title: string;
     description: string;
@@ -9,10 +10,6 @@ export interface JsonData {
     misi: string[];
   };
   footercontent: {
-    description: string;
-  };
-  contact: {
-    title: string;
     description: string;
   };
   susunanPengurus: {

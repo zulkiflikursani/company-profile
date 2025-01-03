@@ -1,14 +1,14 @@
 import Image from "next/image";
 import React, { useState, ChangeEvent, useEffect } from "react";
 
-interface ImageUploaderProductProps {
+interface ImageUploaderLogoProps {
   label: string;
   imageUrl?: string;
   id: string | number;
   onImageUpload: (imageUrl: string, id: string | number) => void;
 }
 
-const ImageUploaderProduct: React.FC<ImageUploaderProductProps> = ({
+const ImageUploaderLogo: React.FC<ImageUploaderLogoProps> = ({
   label,
   imageUrl = "",
   onImageUpload,
@@ -30,7 +30,7 @@ const ImageUploaderProduct: React.FC<ImageUploaderProductProps> = ({
     formData.append("id", String(Number(id) + 1));
 
     try {
-      const response = await fetch("/api/superadmin/product/upload", {
+      const response = await fetch("/api/superadmin/logo/upload", {
         method: "POST",
         body: formData,
       });
@@ -85,4 +85,4 @@ const ImageUploaderProduct: React.FC<ImageUploaderProductProps> = ({
   );
 };
 
-export default ImageUploaderProduct;
+export default ImageUploaderLogo;

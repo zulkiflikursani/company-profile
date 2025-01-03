@@ -6,6 +6,7 @@ import PengurusArrayEditorWithImage from "./ArraySususnanPengurus";
 import ImageUploader from "./ImageUploader";
 import ArrayEditorProduct from "./ArrayEditorProduct";
 import ImageUploaderProduct from "./ImageUploaderProduct";
+import ImageUploaderLogo from "./ImageUploaderLogo";
 
 interface JsonEditorProps {
   initialData: JsonData;
@@ -150,6 +151,15 @@ const JsonEditor: React.FC<JsonEditorProps> = ({ initialData, onSubmit }) => {
       },
     });
   };
+  const handleImageUploadLogo = (imageUrl: string) => {
+    setFormData({
+      ...formData,
+      logo: {
+        ...formData.logo,
+        imgurl: imageUrl,
+      },
+    });
+  };
   const handleImageUploadProduct = (imageUrl: string, id: string | number) => {
     // console.log("id", id);
     id = Number(id);
@@ -192,6 +202,18 @@ const JsonEditor: React.FC<JsonEditorProps> = ({ initialData, onSubmit }) => {
     <div className=" bg-gray-500 bg-opacity-75 flex justify-center items-center ">
       <div className="bg-white p-8 rounded shadow-md w-full ">
         <h2 className="text-2xl font-bold mb-4">Website Config</h2>
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-4 bg-gray-100 p-4"
+        >
+          <h3 className="text-xl font-semibold mb-2 capitalize">Logo</h3>
+          <ImageUploaderLogo
+            label="Logo"
+            imageUrl={formData.logo.imgurl}
+            id={""}
+            onImageUpload={handleImageUploadLogo}
+          />
+        </form>
         <form
           onSubmit={handleSubmit}
           className="flex flex-col gap-4 bg-gray-100 p-4"
@@ -401,6 +423,45 @@ const JsonEditor: React.FC<JsonEditorProps> = ({ initialData, onSubmit }) => {
                 />
               </div>
             )}
+          />
+          <div className="flex justify-end gap-2 mt-4">
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Simpan
+            </button>
+          </div>
+        </form>
+
+        <hr className="border-t border-gray-300 my-4 " />
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-4 p-4 bg-gray-100"
+        >
+          <h3 className="text-xl font-semibold mb-2 capitalize">More Info</h3>
+
+          <FieldEditor
+            label="Alamat"
+            value={formData.moreinfo.alamat}
+            onChange={(value) => handleFieldChange("moreinfo", "alamat", value)}
+          />
+          <FieldEditor
+            label="No HP"
+            value={formData.moreinfo.nohp}
+            onChange={(value) => handleFieldChange("moreinfo", "nohp", value)}
+          />
+          <FieldEditor
+            label="jam-operasi"
+            value={formData.moreinfo["jam-operasi"]}
+            onChange={(value) =>
+              handleFieldChange("moreinfo", "jam-operasi", value)
+            }
+          />
+          <FieldEditor
+            label="email"
+            value={formData.moreinfo.email}
+            onChange={(value) => handleFieldChange("moreinfo", "email", value)}
           />
           <div className="flex justify-end gap-2 mt-4">
             <button

@@ -55,7 +55,7 @@ export default function Page() {
       <JsonEditor initialData={data} onSubmit={handleUpdate} />
       {/* )} */}
       {/* Display your updated data here */}
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
     </div>
   );
 }

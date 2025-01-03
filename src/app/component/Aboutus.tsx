@@ -4,6 +4,7 @@ import React from "react";
 import SusunanPengurus from "./SusunanPengurus";
 import Visimisi from "./Visimisi";
 import { useInView } from "react-intersection-observer";
+import data from "@/app/config/file-content.json";
 
 function Aboutus() {
   const [ref, inView] = useInView({
@@ -20,16 +21,14 @@ function Aboutus() {
                   inView ? "translate-x-0" : "-translate-x-full"
                 } text-7xl text-primary-light font-bold`}
               >
-                About Us
+                {data.aboutUs.title}
               </h1>
               <h1
                 className={`transform transition-all duration-700 delay-150 opacity-0 translate-y-4 ${
                   inView ? "opacity-100 translate-y-0" : ""
                 }`}
               >
-                A team comprised of board certified accountants, Manreka
-                Accounting helps you handle accounting problems in the most
-                accessible and convenient way.
+                {data.aboutUs.description}
               </h1>
             </div>
           </div>

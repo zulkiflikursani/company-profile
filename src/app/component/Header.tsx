@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useRef } from "react";
 import MobileMenu from "./MobileMenu"; // Import MobileMenu component
+import data from "@/app/config/file-content.json";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,7 +50,7 @@ function Header() {
                 />
               </svg>
             </svg>
-            <span className="text-sm">+62853 9941 7738</span>
+            <span className="text-sm">{data.moreinfo.nohp}</span>
           </div>
           <div className="flex space-x-1 items-center">
             <svg
@@ -66,7 +67,7 @@ function Header() {
                 d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
               />
             </svg>
-            <span className="text-sm">Mon-Fri:09.00-15.00 </span>
+            <span className="text-sm">{data.moreinfo["jam-operasi"]}</span>
           </div>
         </div>
       </nav>

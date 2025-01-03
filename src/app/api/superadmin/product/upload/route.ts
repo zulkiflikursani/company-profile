@@ -60,10 +60,7 @@ export async function POST(req: NextRequest) {
     const { filePath, success } = await saveFile(file, id);
 
     if (success) {
-      const baseUrl = `${
-        req.headers.get("x-forwarded-proto") || "http"
-      }://${req.headers.get("host")}`;
-      const imageUrl = `${baseUrl}${filePath}`;
+      const imageUrl = `${filePath}`;
       return NextResponse.json({ imageUrl }, { status: 200 });
     } else {
       return NextResponse.json(

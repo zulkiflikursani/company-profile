@@ -1,13 +1,14 @@
 {
+  "logo": {
+    "imgurl": "/image/logo.png"
+  },
   "aboutUs": {
     "title": "Tentang Kami 2",
     "description": "Tim kami terdiri dari akuntan bersertifikat. Manreka Accounting membantu Anda menangani masalah akuntansi dengan cara yang paling mudah diakses dan nyaman."
   },
   "visiMisi": {
     "title": "Visi dan Misi",
-    "visi": [
-      "Terwujudnya Bank Syariah yang Unggul dan Terpercaya"
-    ],
+    "visi": ["Terwujudnya Bank Syariah yang Unggul dan Terpercaya"],
     "misi": [
       "Menjalankan usaha perbankan yang sehat dan amanah 222",
       "Meberikan Pelayanan yang terbaik dan islami",
@@ -18,10 +19,6 @@
   },
   "footercontent": {
     "description": "Tim kami terdiri dari akuntan bersertifikat. Manreka Accounting membantu Anda menangani masalah akuntansi dengan cara yang paling mudah diakses dan nyaman."
-  },
-  "contact": {
-    "title": "Hubungi Kami",
-    "description": "Hubungi kami melalui kontak di bawah ini untuk pertanyaan atau pertukaran."
   },
   "susunanPengurus": {
     "title": "pengurus",
@@ -42,7 +39,7 @@
         "position": "Dewan Pengawas Syariah"
       },
       {
-        "img": "http://localhost:3000/image/products/Product-4.png",
+        "img": "/image/pengurus/4.png",
         "name": "Gusmi Arni Saleh",
         "position": "Direktur Utama"
       },
@@ -71,11 +68,6 @@
         "img": "/image/products/product-3.png",
         "name": "Deposito",
         "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius, mollitia."
-      },
-      {
-        "img": "http://localhost:3000/image/products/Product-4.jpg",
-        "name": "tes",
-        "description": "tes"
       }
     ]
   },

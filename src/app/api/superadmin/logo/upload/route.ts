@@ -9,10 +9,10 @@ export const config = {
   },
 };
 
-const saveFile = async (file: File, id: string) => {
+const saveFile = async (file: File) => {
   const fileExtension = path.extname(file.name || "");
-  const fileName = `${id}${fileExtension}`;
-  const uploadsDir = "public/image/pengurus";
+  const fileName = `logo${fileExtension}`;
+  const uploadsDir = "public/image";
   const filePath = path.join(uploadsDir, fileName);
 
   try {
@@ -21,7 +21,7 @@ const saveFile = async (file: File, id: string) => {
     const fileData = Buffer.from(fileBuffer);
     await fs.writeFile(filePath, fileData);
     return {
-      filePath: `/image/pengurus/${fileName}`,
+      filePath: `/image/${fileName}`,
       fileName,
       success: true,
     };
@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
-    const { filePath, success } = await saveFile(file, id);
+    const { filePath, success } = await saveFile(file);
 
     if (success) {
       const imageUrl = `${filePath}`;

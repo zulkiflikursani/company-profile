@@ -1,27 +1,14 @@
 import Image from "next/image";
 import React from "react";
+import data from "@/app/config/file-content.json";
 
 function Footer() {
   return (
     <div className=" w-10/12 mx-auto md:mb-10 mb-52 ">
       <div className="grid md:grid-cols-2 grid-cols-1 gap-32">
         <div className="flex flex-col max-w-[400px]">
-          <Image
-            src={"/image/logo.png"}
-            height={100}
-            width={200}
-            alt="gambar"
-          />
-          <h2>
-            Lorem, ipsum dolor sit samet consectetur adipisicing elit. At rem,
-            accusantium corrupti dicta quis tempora, impedit, delectus quod
-            nulla adipisci veniam dignissimos quaerat quo et in obcaecati!
-            Deserunt asperiores eos enim debitis earum molestias ex nesciunt
-            porro, expedita libero illum optio. Error odio porro tempore maiores
-            officia ducimus tenetur excepturi esse, eum voluptates omnis iure
-            corrupti autem dicta, facere repellendus deserunt cumque maxime
-            nostrum dolorem provident quibusdam magni.
-          </h2>
+          <Image src={data.logo.imgurl} height={100} width={200} alt="gambar" />
+          <h2>{data.footercontent.description}</h2>
         </div>
         <div className="flex flex-col">
           <h1 className="text-3xl font-bold text-primary-light font-hind">
@@ -49,10 +36,7 @@ function Footer() {
                 />
               </svg>
             </div>
-            <div className="max-w-400px">
-              Gd. Graha Pena (Mini Ruko) <br /> Jl. Urip Sumpharjo No. 20
-              Makassar
-            </div>
+            <div className="max-w-400px">{data.moreinfo.alamat}</div>
           </div>
           <hr className="h-px  bg-secondary-light border-0 " />
           <div className="flex m-2 items-center gap-2">
@@ -79,7 +63,7 @@ function Footer() {
                 </svg>
               </svg>
             </div>
-            <div className="max-w-400px">+62853 9941 7738</div>
+            <div className="max-w-400px">{data.moreinfo.nohp}</div>
           </div>
           <hr className="h-px  bg-secondary-light border-0 " />
           <div className="flex m-2 items-center gap-2">
@@ -99,7 +83,7 @@ function Footer() {
                 />
               </svg>
             </div>
-            <div className="max-w-400px">Senin - Jumat 09.00-15.00</div>
+            <div className="max-w-400px">{data.moreinfo["jam-operasi"]}</div>
           </div>
           <hr className="h-px  bg-secondary-light border-0 " />
           <div className="flex m-2 items-center gap-2">
@@ -119,7 +103,7 @@ function Footer() {
                 />
               </svg>
             </div>
-            <div className="max-w-400px">bprshik_mks@yahoo.com</div>
+            <div className="max-w-400px">{data.moreinfo.email}</div>
           </div>
           <div className="flex gap-3">
             <Image src={"/image/ojk.png"} alt={"OJK"} width={120} height={30} />

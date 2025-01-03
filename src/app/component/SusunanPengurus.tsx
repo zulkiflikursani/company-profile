@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { useInView } from "react-intersection-observer";
+import data from "@/app/config/file-content.json";
 
 function SusunanPengurus() {
   const [ref, inView] = useInView({
@@ -15,7 +16,32 @@ function SusunanPengurus() {
         Susunan Pengurus
       </h1>
       <div className="grid md:grid-cols-5 gap-6 grid-cols-1 mx-5">
-        <div
+        {data.susunanPengurus.pengurus.map((item, index) => {
+          return (
+            <div
+              key={index}
+              className={`text-center transform transition-all duration-1000 delay-300 ${
+                inView ? "scale-100" : "scale-50"
+              } bg-white flex flex-col justify-between items-center px-3 py-6  text-center h-full`}
+            >
+              <Image
+                src={`/image/pengurus/${index + 1}.jpg`}
+                alt={`komisaris ${index + 1}`}
+                width="300"
+                height="300"
+                className="object-cover"
+              />
+              <div className="flex flex-col h-full">
+                <div className="text-lg text-primary-light font-bold">
+                  {item.name}
+                </div>
+                <div className="text-sm font-bold">{item.position}</div>
+              </div>
+            </div>
+          );
+        })}
+
+        {/* <div
           className={`text-center transform transition-all duration-700 delay-300 ${
             inView ? "translate-x-0" : "-translate-x-full"
           } bg-white flex flex-col justify-between items-center px-3 py-6  text-center h-full`}
@@ -105,7 +131,7 @@ function SusunanPengurus() {
             </div>
             <div className="text-sm font-bold">Direktur</div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
