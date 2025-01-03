@@ -11,7 +11,7 @@ export const config = {
 
 const saveFile = async (file: File, id: string) => {
   const fileExtension = path.extname(file.name || "");
-  const fileName = `Product-${id}${fileExtension}`;
+  const fileName = `product-${id}${fileExtension}`;
   const uploadsDir = "public/image/products";
   const filePath = path.join(uploadsDir, fileName);
 
