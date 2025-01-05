@@ -1,6 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import fs from "fs/promises";
 import path from "path";
+// import data from "@/app/config/file-content.json";
 
 export async function POST(req: NextRequest) {
   try {
@@ -11,6 +12,7 @@ export async function POST(req: NextRequest) {
       process.cwd(),
       "src/app/config/file-content.json"
     );
+
     console.log("File Path:", filePath);
     await fs.writeFile(filePath, JSON.stringify(updatedData, null, 2), "utf8");
     console.log("File updated success");
