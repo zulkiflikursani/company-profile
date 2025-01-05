@@ -22,7 +22,7 @@ function Footer() {
             className="mb-2"
             alt="gambar"
           />
-          <h2>{data.footercontent.description}</h2>
+          {/* <h2>{data.footercontent.description}</h2> */}
         </div>
         <div className="flex flex-col">
           <h1 className="text-3xl font-bold text-primary-light font-hind">

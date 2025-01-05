@@ -15,7 +15,7 @@ function Aboutus() {
       <div className="min-h-screen flex justify-center items-center relative">
         <div className="grid md:grid-cols-2 grid-cols-1 gap-2 justify-items-center">
           <div className="grid col-span-1">
-            <div className="h-full w-full flex flex-col justify-center p-20 gap-10">
+            <div className="h-full text-justify w-full flex flex-col justify-center p-20 gap-10">
               <h1
                 className={`text-center transform transition-all duration-500 ${
                   inView ? "translate-x-0" : "-translate-x-full"
@@ -23,13 +23,13 @@ function Aboutus() {
               >
                 {data.aboutUs.title}
               </h1>
-              <h1
+              <p
                 className={`transform transition-all duration-700 delay-150 opacity-0 translate-y-4 ${
                   inView ? "opacity-100 translate-y-0" : ""
                 }`}
               >
                 {data.aboutUs.description}
-              </h1>
+              </p>
             </div>
           </div>
           <div

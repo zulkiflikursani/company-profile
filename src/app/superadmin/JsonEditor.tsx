@@ -44,6 +44,7 @@ const JsonEditor: React.FC<JsonEditorProps> = ({ initialData, onSubmit }) => {
         [field]: items,
       },
     }));
+    console.log("change product", formData);
   };
   const handleSusunanPengurusArrayChange = (
     section: keyof JsonData,
