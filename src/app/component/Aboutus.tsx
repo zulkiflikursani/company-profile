@@ -19,7 +19,7 @@ function Aboutus() {
               <h1
                 className={`text-center transform transition-all duration-500 ${
                   inView ? "translate-x-0" : "-translate-x-full"
-                } text-7xl text-primary-light font-bold`}
+                } md:text-7xl text-4xl text-primary-light font-bold`}
               >
                 {data.aboutUs.title}
               </h1>
@@ -33,16 +33,16 @@ function Aboutus() {
             </div>
           </div>
           <div
-            className={`grid col-span-1  transform transition-all duration-500 ${
+            className={`mt-10 grid col-span-1  transform transition-all duration-500 ${
               inView ? "translate-x-0" : "translate-x-full"
             } `}
           >
             <Image
               src={"/image/about/about.png"}
-              width={500}
-              height={500}
+              width={600}
+              height={800}
               alt={"Gambar"}
-              className="bg-green-200"
+              // className="bg-green-200"
             />
           </div>
         </div>

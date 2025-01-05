@@ -32,7 +32,7 @@ export default function RootLayout({
           <AuthProvider>
             <Header />
             {children}
-            <div className="flex-1 border bottom-1 border-gray-300 my-3"></div>
+            {/* <div className="flex-1 border bottom-1 border-gray-300 my-3"></div> */}
             <Footer />
           </AuthProvider>
         </Providers>

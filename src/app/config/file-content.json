@@ -3,12 +3,14 @@
     "imgurl": "/image/logo.png"
   },
   "aboutUs": {
-    "title": "Tentang Kami 2",
-    "description": "Tim kami terdiri dari akuntan bersertifikat. Manreka Accounting membantu Anda menangani masalah akuntansi dengan cara yang paling mudah diakses dan nyaman."
+    "title": "Sekilas Tentang BPRS HIK Fajar Nitro",
+    "description": "PT. BPRS Harta Insan Karimah Fajar Nitro didirikan berdasarkan\nakta Notaris Masnawati, SH, MKn. Nomor 04 Tanggal 27 Agustus\n2012 dan Keputusan Menteri Hukum & HAM RI No. AHU-\n52503.AH.01.01 Tahun 2012 dengan nama BPRS HIK Makassar,\nberkedudukan di Jl. Sunu No. 46 Makassar.\n\nKehadiran BPRS HIK Makassar yang mulai beroperasi pada 19 April\n2013 membawa sebuah warna baru di sektor pembiayaan syariah\ndi Kota Makassar."
   },
   "visiMisi": {
     "title": "Visi dan Misi",
-    "visi": ["Terwujudnya Bank Syariah yang Unggul dan Terpercaya"],
+    "visi": [
+      "Terwujudnya Bank Syariah yang Unggul dan Terpercaya"
+    ],
     "misi": [
       "Menjalankan usaha perbankan yang sehat dan amanah 222",
       "Meberikan Pelayanan yang terbaik dan islami",
@@ -39,7 +41,7 @@
         "position": "Dewan Pengawas Syariah"
       },
       {
-        "img": "/image/pengurus/4.png",
+        "img": "/image/pengurus/4.jpg",
         "name": "Gusmi Arni Saleh",
         "position": "Direktur Utama"
       },

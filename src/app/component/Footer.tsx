@@ -4,10 +4,24 @@ import data from "@/app/config/file-content.json";
 
 function Footer() {
   return (
-    <div className=" w-10/12 mx-auto md:mb-10 mb-52 ">
-      <div className="grid md:grid-cols-2 grid-cols-1 gap-32">
+    <div className=" w-full mx-auto md:mb-10 mb-52 ">
+      <div className="relative w-full h-[50vh] flex justify-center">
+        <Image
+          src={`/image/bg-footer.png`}
+          layout="fill"
+          objectFit="cover"
+          alt="gambar"
+        />
+      </div>
+      <div className="mx-auto w-10/12 grid md:grid-cols-2 grid-cols-1 gap-32 py-8">
         <div className="flex flex-col max-w-[400px]">
-          <Image src={data.logo.imgurl} height={100} width={200} alt="gambar" />
+          <Image
+            src={data.logo.imgurl}
+            width={200}
+            height={200}
+            className="mb-2"
+            alt="gambar"
+          />
           <h2>{data.footercontent.description}</h2>
         </div>
         <div className="flex flex-col">

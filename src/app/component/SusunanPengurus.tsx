@@ -12,7 +12,7 @@ function SusunanPengurus() {
       ref={ref}
       className="min-h-screen flex flex-col w-full justify-center items-center text-center bg-gray-200"
     >
-      <h1 className="text-4xl text-primary-light font-bold mb-10">
+      <h1 className="text-6xl text-primary-light font-bold mb-10">
         Susunan Pengurus
       </h1>
       <div className="grid md:grid-cols-5 gap-6 grid-cols-1 mx-5">
