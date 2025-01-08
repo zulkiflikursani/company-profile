@@ -24,7 +24,7 @@ function Hero({ className }: PropsType) {
 
       {/* Konten Text dan Button */}
       <div className="relative z-10 w-full flex flex-col justify-center items-center">
-        <div className="text-primary-light md:text-6xl flex flex-col items-center text-[50px] font-bold  font-hind -mt-52 tracking-tight">
+        <div className="text-primary-light md:text-6xl flex flex-col items-center text-[50px] font-bold  font-hind -mt-50 tracking-tight">
           <div
             className={`text-center transform transition-all duration-500 ${
               inView ? "scale-100" : "scale-50"

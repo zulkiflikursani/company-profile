@@ -54,22 +54,22 @@
   },
   "products": {
     "title": "Our Product",
-    "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem quaerat accusamus consequatur quidem necessitatibus nihil perferendis. Voluptates, id esse. Aliquid rem, delectus temporibus, mollitia nostrum, culpa animi eum eligendi adipisci fugiat accusamus doloribus quis accusantium ab at unde dolorum possimus.",
+    "description": "Raih keberkahan bersama BPRS HIK Fajar Nitro dengan produk produk perbankan yang mengedepankan prinsip syariah dan aman dari riba",
     "products": [
       {
         "img": "/image/products/product-1.png",
         "name": "Tabungan",
-        "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius, mollitia."
+        "description": "Tabungan bebas riba dengan prinsip bagi hasil"
       },
       {
         "img": "/image/products/product-2.png",
         "name": "Pembiayaan",
-        "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius, mollitia."
+        "description": "Pembiayaan yang disalurkan kepada masyarakat dengan mengutamakanan prinsip syariah"
       },
       {
         "img": "/image/products/product-3.png",
         "name": "Deposito",
-        "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius, mollitia."
+        "description": "Investasi sesuai syariah dengan prinsip Mudharabah Muthlaqah"
       }
     ]
   },

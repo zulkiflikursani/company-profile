@@ -13,10 +13,12 @@ function Products() {
       <div className="flex min-h-screen items-center justify-center">
         <div className="grid justify-center items-center w-10/12">
           <div className="flex flex-col justify-items-center text-center">
-            <h1 className="text-3xl mb-3 text-primary-light font-bold">
+            <h1 className="text-4xl mb-3 text-primary-light font-black">
               {data.products.title}
             </h1>
-            <h1 className="mb-3">{data.products.description}</h1>
+            <h1 className="mb-7 font-bold w-10/12 mx-auto">
+              {data.products.description}
+            </h1>
             <div
               className={`grid gap-10 md:grid-cols-3 grid-cols-1 justify-items-center transform transition-all duration-1000 delay-300 ${
                 inView ? "scale-100" : "scale-50"
