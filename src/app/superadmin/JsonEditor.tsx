@@ -343,6 +343,15 @@ const JsonEditor: React.FC<JsonEditorProps> = ({ initialData, onSubmit }) => {
                     onChange(index, { ...item, position: value })
                   }
                 />
+                <FieldEditor
+                  label="Description"
+                  value={item.description}
+                  type="textarea"
+                  rows={6}
+                  onChange={(value) =>
+                    onChange(index, { ...item, description: value })
+                  }
+                />
               </div>
             )}
           />
