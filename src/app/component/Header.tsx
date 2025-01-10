@@ -106,6 +106,7 @@ function Header() {
               ""
             )}
             <Link href="/#hero">Home</Link>
+            <Link href="/pengurus">Pengurus</Link>
             <Link href="/#about">About us</Link>
             <Link href="/#product">Our Product</Link>
             <div

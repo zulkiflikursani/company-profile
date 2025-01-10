@@ -18,6 +18,7 @@ export interface JsonData {
       img: string;
       name: string;
       position: string;
+      description: string;
     }[];
   };
   products: {

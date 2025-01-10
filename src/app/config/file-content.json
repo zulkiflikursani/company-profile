@@ -8,9 +8,7 @@
   },
   "visiMisi": {
     "title": "Visi dan Misi",
-    "visi": [
-      "Terwujudnya Bank Syariah yang Unggul dan Terpercaya"
-    ],
+    "visi": ["Terwujudnya Bank Syariah yang Unggul dan Terpercaya"],
     "misi": [
       "Menjalankan usaha perbankan yang sehat dan amanah 222",
       "Meberikan Pelayanan yang terbaik dan islami",
@@ -23,32 +21,37 @@
     "description": "Tim kami terdiri dari akuntan bersertifikat. Manreka Accounting membantu Anda menangani masalah akuntansi dengan cara yang paling mudah diakses dan nyaman."
   },
   "susunanPengurus": {
-    "title": "pengurus",
+    "title": "Susunan Pengurus",
     "pengurus": [
       {
         "img": "/image/pengurus/1.jpg",
         "name": "Muhammad Nur Alfatah",
-        "position": "Komisaris Utama"
+        "position": "Komisaris Utama",
+        "description": "<p>Muhammad Nur Alfatah, SH., MM menjadi komisaris utama BPRS Harta Insan Karimah Fajar Nitro  sejak tahun 2020. Beliau dilahirkan di Ternate 17 Agustus 1965, merupakan lulusan dari Fakultas Hukum Universitas Hasanuddin (1989) dan Program Magister Manajemen Universitas Hasanuddin (2001).</p> <p>Karir beliau di Perbankan dimulai dari PT. Bank Bukopin Tbk. Tahun 1990 sampai dengan 2012 yang pada awalnya menjadi staf kemudian menjabat sebagai Manajer Operasi dan Pelayanan caang Pare-pare, menjadi Pemimpin cabang Samarinda dan Padang. Tahun 2012 sampai dengan 2015 beliau berkarir sebagai Senior Branch Manager Cabang Samarinda pada PT Bank Permata Tbk. Beliau kemudian melanjutkan karir pada Bank UOB Indonesia sebagai Area Business Banking Funding Manager Balikpapan untuk wilayah Kalimantan-Sulawesi (2015-2018) dan kembali berkarir pada PT Bank Syariah  Bukopin sebagai pemimpin Cabang Makassar (2018-2019).</p>"
       },
       {
         "img": "/image/pengurus/2.jpg",
         "name": "Arifin Abdullah",
-        "position": "Komisaris"
+        "position": "Komisaris",
+        "description": "<p>H. Arifin Abdullah, SE menjadi komisaris BPRS Harta Insan Karimah Fajar Nitro sejak tahun 2020. Beliau dilahirkan di 2 November 1960, merupakan lulusan dari Fakultas Ekonomi Universitas Muslim Indonesia (1981)</p><p>Karir Perbankan beliau dimulai pada PT Bank Bukopin Tbk dengan jabatan terakhir sebagai Manajer Bisnis Retail (1986-2015). Beliau kemudian menjabat sebagai Direktur Utama BPRS Investama Mega Bhakti (2017-2018) dan sebagai Ketua KSP Multi jasa Sejahtera (2017-2020).</p>"
       },
       {
         "img": "/image/pengurus/3.jpg",
         "name": "Prof. Dr. Muhammad Nur Alfatah",
-        "position": "Dewan Pengawas Syariah"
+        "position": "Dewan Pengawas Syariah",
+        "description": "<p>Prof. Dr. H. Muammar Bakry, Lc., M.Ag menjadi Dewan Pengawas Syariah BPRS Harta Insan Karimah Fajar Nitro sejak tahun 2013. Beliau dilahirkan di Ujungpandang  22 November 1973, merupakan lulusan dari Universitas Al-Azhar Kairo, Mesir dengan studi Islam dan Arab (1997), Program Magister Syariah dan Hukum Islam pada Institut Agama Islam Negeri Alauddin Makassar (1999) dan program Doktoral Syariah dan Hukum Islam pada Universitas Islam Negeri Syarif Hidayatullah (2005)</p><p>Pengalaman kerja Beliau adalah Wakil Rektor IV UIM (Universitas Islam Makassar),  Dosen Fakultas Syariah UIN Alauddin Makassar, Dosen Pascasarjana UIN Alauddin Makassar, Dosen Pascasarjana UIM (Universitas Islam Makassar), Dosen Pascasarjana Notariat UNHAS Makassar, Dosen Ekonomi Syariah dan Manajemen Syariah Universitas Bosowa 45 (Th.2015), Ketua Bidang Akademik Pondok Pesantren Nahdlatul Ulum Maros, Pimpinan Pesantren Al-Fakhriyah Makassar, Direktur SDIT Ma’arif Makassar, Imam Besar Masjid Al-Markaz Al-Islami Jend. Yusuf Makassar, Ketua Dewan Pengawas Syariah BPRS HIK Fajar Nitro dan anggota Dewan Pengawas Syariah BPRS Dana Moneter.</p>"
       },
       {
         "img": "/image/pengurus/4.jpg",
         "name": "Gusmi Arni Saleh",
-        "position": "Direktur Utama"
+        "position": "Direktur Utama",
+        "description": "<p>Gusmi Arni Saleh menjabat sebagai Direktur Utama BPRS HIK Fajar Nitro sejak tahun 2022. Beliau dilahirkan di Makassar 16 Maret 1966. Beliau merupakan lulusan Fakultas Sastra di Universitas Hasanuddin (1989)</p><p>Karir perbankan beliau dimulai sejak tahun 1990 pada Bank Bukopin sebagai Account Officer, Pemimpin cabang pembantu, Manager Kartu Kredit dan Merchant, Manager Dana Relationship hingga menjadi Pemimpin Cabang.</p>"
       },
       {
         "img": "/image/pengurus/5.jpg",
         "name": "Amiruddin",
-        "position": "Direktur"
+        "position": "Direktur",
+        "description": "<p>Amiruddin, S,.Kom., MM menjabat sebagai Direktur BPRS HIK Fajar Nitro sejak tahun 2016. Beliau lahir di Jeneponto, 6 Mei 1975. Beliau merupakan lulusan fakultas Teknik Informatika pada Universitas Satria Makassar (2009) dan Program Magister Managemen pada Institut Bisnis dan Keuangan Nitro (2021)</p><p>Beliau memulai karir perbankan di BPRS Niaga Madani pada tahun 2007 sampai dengan 2013 dengan jabatan terakhir sebagai Kepala Bagian Operasional.</p>"
       }
     ]
   },
