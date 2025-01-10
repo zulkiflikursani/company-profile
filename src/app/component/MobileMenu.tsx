@@ -57,6 +57,13 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
           Home
         </Link>
         <Link
+          href="/pengurus"
+          onClick={onClose}
+          className="block py-2 px-4 hover:bg-gray-100"
+        >
+          Pengurus
+        </Link>
+        <Link
           href="/#about"
           onClick={onClose}
           className="block py-2 px-4 hover:bg-gray-100"
