@@ -15,7 +15,7 @@ function Aboutus() {
       <div className="min-h-screen flex justify-center items-center relative">
         <div className="grid md:grid-cols-2 grid-cols-1 gap-2 justify-items-center">
           <div className="grid col-span-1">
-            <div className="h-full text-justify w-full flex flex-col justify-center p-20 gap-10">
+            <div className="h-full text-justify w-full flex flex-col justify-center md:p-20 p-4 gap-10">
               <h1
                 className={`text-center transform transition-all duration-500 ${
                   inView ? "translate-x-0" : "-translate-x-full"
