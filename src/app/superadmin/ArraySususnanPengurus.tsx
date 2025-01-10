@@ -5,6 +5,7 @@ interface Pengurus {
   img: string;
   name: string;
   position: string;
+  description: string;
 }
 
 interface PengurusArrayEditorWithImageProps {

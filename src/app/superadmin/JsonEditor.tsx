@@ -53,6 +53,7 @@ const JsonEditor: React.FC<JsonEditorProps> = ({ initialData, onSubmit }) => {
       img: string;
       name: string;
       position: string;
+      description: string;
     }[]
   ) => {
     setFormData((prev) => ({
@@ -113,7 +114,7 @@ const JsonEditor: React.FC<JsonEditorProps> = ({ initialData, onSubmit }) => {
         ...prevData.susunanPengurus,
         pengurus: [
           ...prevData.susunanPengurus.pengurus,
-          { img: "", name: "", position: "" },
+          { img: "", name: "", position: "", description: "" },
         ],
       },
     }));
