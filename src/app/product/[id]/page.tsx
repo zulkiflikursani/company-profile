@@ -11,7 +11,7 @@ export default async function Page({
   const item = data.products.products[parseInt(id, 10)];
 
   return (
-    <div className="md:w-10/12 w-11/12  mx-auto ">
+    <div className="md:w-10/12 w-11/12  mx-auto mb-10">
       <div className="w-full">
         <h3 className="font-bold text-5xl text-primary text-center my-7">
           {item.name}
