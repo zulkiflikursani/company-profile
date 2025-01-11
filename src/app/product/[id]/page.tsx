@@ -11,13 +11,13 @@ export default async function Page({
   const item = data.products.products[parseInt(id, 10)];
 
   return (
-    <div className="w-10/12 mx-auto ">
+    <div className="md:w-10/12 w-11/12  mx-auto ">
       <div className="w-full">
         <h3 className="font-bold text-5xl text-primary text-center my-7">
           {item.name}
         </h3>
       </div>
-      <div className="grid grid-cols-4">
+      <div className="grid md:grid-cols-4 grid-cols-2">
         <div
           dangerouslySetInnerHTML={{
             __html: data.products.products[parseInt(id, 10)].content,
