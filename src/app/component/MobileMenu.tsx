@@ -98,7 +98,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
           onClick={onClose}
           className="block py-2 px-4 hover:bg-gray-100"
         >
-          Pembayaran
+          Pembiayaan
         </Link>
       </nav>
     </div>

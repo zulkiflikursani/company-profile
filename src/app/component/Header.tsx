@@ -150,7 +150,7 @@ function Header() {
               )}
             </div>
             <div className="w-28"></div>
-            <Link href="#pembayaran">Pembayaran</Link>
+            <Link href="#pembayaran">Pembiayaan</Link>
           </div>
         </div>
         <MobileMenu isOpen={isMobileMenuOpen} onClose={toggleMobileMenu} />

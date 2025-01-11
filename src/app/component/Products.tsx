@@ -29,13 +29,16 @@ function Products() {
                 return (
                   <div key={index} className="grid grid-cols-1 gap-3">
                     <div className="grid grid-cols-1 space-y-2 py-5 flex-col items-center justify-items-center bg-secondary-light w-[310px] p-2 text-center rounded-3xl min-h-2">
-                      <Image
-                        src={item.img}
-                        alt={"gambar"}
-                        width={200}
-                        height={200}
-                        className=" "
-                      />
+                      <div className="w-full h-52">
+                        <Image
+                          src={item.img}
+                          alt={"gambar"}
+                          layout="responsive"
+                          width={180}
+                          height={180}
+                          className=" "
+                        />
+                      </div>
                       <h1 className="font-black text-3xl text-primary-light">
                         {item.name}
                       </h1>
@@ -50,69 +53,6 @@ function Products() {
                   </div>
                 );
               })}
-              {/* <div className="grid grid-cols-1 gap-3">
-                <div className="grid grid-cols-1 space-y-2 py-5 flex-col items-center justify-items-center bg-secondary-light w-[310px] p-2 text-center rounded-3xl min-h-2">
-                  <Image
-                    src={"/image/produks/tabungan.png"}
-                    alt={"gambar"}
-                    width={200}
-                    height={200}
-                    className=" "
-                  />
-                  <h1 className="font-black text-3xl text-primary-light">
-                    TABUNGAN
-                  </h1>
-                  <div>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Eius, mollitia.{" "}
-                  </div>
-                  <button className="bg-primary-light rounded-full px-3 text-[10px] py-1 text-white">
-                    lihat selengkapnya
-                  </button>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 gap-3">
-                <div className="grid grid-cols-1 space-y-2 py-5 flex-col items-center justify-items-center  bg-secondary-light w-[310px] p-2 text-center rounded-3xl min-h-2">
-                  <Image
-                    src={"/image/produks/pembiayaan.png"}
-                    alt={"gambar"}
-                    width={200}
-                    height={200}
-                    className=" "
-                  />
-                  <h1 className="font-black text-3xl text-primary-light">
-                    PEMBIAYAAN
-                  </h1>
-                  <div>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Eius, mollitia.{" "}
-                  </div>
-                  <button className="bg-primary-light rounded-full px-3 text-[10px] py-1 text-white">
-                    lihat selengkapnya
-                  </button>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 gap-3">
-                <div className="grid grid-cols-1 space-y-2 py-5 flex-col items-center justify-items-center  bg-secondary-light w-[310px] p-2 text-center rounded-3xl min-h-2">
-                  <Image
-                    src={"/image/produks/deposito.png"}
-                    alt={"gambar"}
-                    width={200}
-                    height={200}
-                    className=" "
-                  />
-                  <h1 className="font-black text-3xl text-primary-light">
-                    DEPOSITO
-                  </h1>
-                  <div>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Eius, mollitia.{" "}
-                  </div>
-                  <button className="bg-primary-light rounded-full px-3 text-[10px] py-1 text-white">
-                    lihat selengkapnya
-                  </button>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>
