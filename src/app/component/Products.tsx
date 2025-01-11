@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import data from "@/app/config/file-content.json";
 import { useInView } from "react-intersection-observer";
+import Link from "next/link";
 
 function Products() {
   const [ref, inView] = useInView({
@@ -39,9 +40,12 @@ function Products() {
                         {item.name}
                       </h1>
                       <div>{item.description}</div>
-                      <button className="bg-primary-light rounded-full px-3 text-[10px] py-1 text-white">
+                      <Link
+                        className="bg-primary-light rounded-full px-3 text-[10px] py-1 text-white"
+                        href={`/product/${index}`}
+                      >
                         lihat selengkapnya
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 );

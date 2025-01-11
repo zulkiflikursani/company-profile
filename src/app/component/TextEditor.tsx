@@ -13,10 +13,11 @@ import Link from "@tiptap/extension-link";
 // Asumsi ResizeImage adalah komponen React yang menangani resize,
 // jika tidak, ini mungkin perlu diubah atau dipindahkan ke ekstensi yang tepat
 import ResizableImage from "./ResizeImage";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface TiptapProps {
-  initialContent?: string; // optional initial content props
+  initialContent?: string; // optional initial content props\
+
   onChange?: (content: string) => void;
   toolbarPosition?: "top" | "bottom";
 }
@@ -24,12 +25,14 @@ interface TiptapProps {
 const Tiptap: React.FC<TiptapProps> = ({
   initialContent = "",
   onChange,
+
   toolbarPosition = "top",
 }) => {
   // State untuk menyimpan konten editor
   const [content, setContent] = useState(initialContent);
   const [isLinkModalOpen, setIsLinkModalOpen] = useState(false);
   const [linkUrl, setLinkUrl] = useState("");
+  const isMounted = useRef(false);
   // MODIFIED: Menambahkan state untuk editor
   const [editor, setEditor] = useState<Editor | null>(null);
 
@@ -79,12 +82,13 @@ const Tiptap: React.FC<TiptapProps> = ({
       console.log(editor.getHTML());
     },
   });
-
   // Effect untuk menginisialisasi content saat pertama kali render
   useEffect(() => {
     if (initialContent && editor) {
+      if (isMounted.current) return;
       setContent(initialContent);
       (editor as Editor).commands.setContent(initialContent);
+      isMounted.current = true;
     }
   }, [editor, initialContent]);
 

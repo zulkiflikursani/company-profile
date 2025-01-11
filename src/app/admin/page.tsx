@@ -20,6 +20,12 @@ const page = () => {
         >
           <h3>Publish</h3>
         </Link>
+        <Link
+          href={"/admin/create-product"}
+          className="bg-primary-light p-4  rounded-lg text-3xl text-gray-100"
+        >
+          <h3>Product</h3>
+        </Link>
         <button
           onClick={async () => {
             await signOut();

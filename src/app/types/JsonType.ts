@@ -28,6 +28,7 @@ export interface JsonData {
       img: string;
       name: string;
       description: string;
+      content: string;
     }[];
   };
   moreinfo: {

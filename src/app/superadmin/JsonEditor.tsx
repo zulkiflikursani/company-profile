@@ -96,7 +96,7 @@ const JsonEditor: React.FC<JsonEditorProps> = ({ initialData, onSubmit }) => {
         ...prevData.products,
         products: [
           ...prevData.products.products,
-          { img: "", name: "", description: "" },
+          { img: "", name: "", description: "", content: "" },
         ],
       },
     }));
