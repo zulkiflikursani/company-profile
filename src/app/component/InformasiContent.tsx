@@ -5,6 +5,7 @@ import CardBerita from "./CardBerita";
 import { useSearchParams } from "next/navigation";
 // import Link from "next/link";
 import CardPublikasi from "./CardPublikasi";
+import Image from "next/image";
 interface DataType {
   id: number;
   title: string;
@@ -79,6 +80,84 @@ const InformasiContent = () => {
         <div className="flex justify-center items-center w-full ">
           <h1 className=" text-[50px] uppercase  text-center ">Informasi</h1>
         </div>
+        <div className="flex-col justify-center items-center w-full md:px-20 my-14">
+          <div className="w-full flex gap-4">
+            <Image
+              src={"/image/informasi.png"}
+              alt={"informasi"}
+              width={200}
+              height={200}
+            />
+            <div className="font-bold flex-col gap-4 ">
+              <p className="text-4xl bg-secondary-dark p-5 w-fit rounded-3xl text-white">
+                INFORMASI
+              </p>
+              <p className="text-4xl p-5">PERUBAHAN NAMA</p>
+            </div>
+          </div>
+          <div className="w-full text-center">
+            <i className="my-2">Assalamualakum Warahmatullahi Wabarakatuh</i>
+            <p>
+              Sehubungan dengan penetapan Undang - Undang No.4 tahun 2023
+              Tentang Pengembangan dan penguatan Sektor Keuangan (P2SK) sesuai
+              Pasal 1 Bagian Kedua Tentang Perbankan, Keputusan Rapat Umum
+              Pemegang Saham PT BPRS Harta Insan Karimah pada tanggal 21
+              November 2024, sebagaimana tertuang dalam Akta Pernyataan
+              Keputusan Rapat Umum Pemegang Saham PT BPRS Harta Insan Karimah
+              Fajar Nitro No. 6 Tanggal 2 Desember 2024 yang dibuat oleh Notaris
+              Sahabuddin Nur,SH., MKn., dan telah mendapat Persetujuan Perubahan
+              Anggaran Dasar sesuai Keputusan Kementerian Hukum dan HAM Republik
+              Indonesia No. AHU-0082842.AI--I.01.02 Tahun 2024 Tentang
+              Persetujuan Perubahan Anggaran Dasar Perseroan Terbatas PT Bank
+              Perekonomian Rakyat Syariah Harta Insan Karimah Fajar Nitro
+              tanggal 18 Desember 2024, sehingga selanjutnya nama Perseroan
+              menjadi sebagai berikut:
+            </p>
+          </div>
+          <div className="w-full">
+            <div className="flex flex-col md:flex-row justify-center  w-full mt-4 gap-2 text-2xl">
+              <div className="w-96 flex-col text-center p-2">
+                <div className="w-full bg-primary-light text-white font-bold ">
+                  SEMULA
+                </div>
+                <div className="text-primary-light border-solid border-2 border-primary-light mt-2 p-2">
+                  PT BANK{" "}
+                  <span className="font-bold text-primary-light">
+                    PEMBIAYAAN
+                  </span>{" "}
+                  RAKYAT SYARIAH HARTA INSAN KARIMAH FAJAR NITRO (PT BPRS HIK
+                  FAJAR NITRO)
+                </div>
+              </div>
+              <div className="w-96 flex-col text-center p-2">
+                <div className="w-full bg-secondary-dark text-white font-bold ">
+                  MENJADI
+                </div>
+                <div className="border-solid border-2 border-secondary-dark mt-2 p-2 text-secondary-dark ">
+                  PT BANK <span className="font-bold  ">PEREKONOMIAN</span>{" "}
+                  RAKYAT SYARIAH HARTA INSAN KARIMAH FAJAR NITRO (PT BPRS HIK
+                  FAJAR NITRO)
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="w-full text-center">
+            <p>
+              Demikian pemberitahuan ini kami sampaikan Atas kepercayaan dan
+              loyalitas seluruh Nasabah, Kami ucapkan terima kasih
+            </p>
+            <i className="">Wassalamualaikum Warahmatullahi Wabarakatuh </i>
+            <div className="font-bold mt-2">
+              <p>Makassar, 14 Januari 2025</p>
+              <p>Direksi </p>
+              <p>PT BPRS Harta Insan Karimah Fajar Nitro</p>
+            </div>
+          </div>
+          <div className="bg-primary-light w-full text-white font-bold text-center p-2 mt-2">
+            PT BPRS Harta Insan Karimah Fajar Nitro berizin dan diawasi oleh
+            Otoritas Jasa Keuangan dan Lembaga Penjamin Simpanan
+          </div>
+        </div>
         <div className="grid md:grid-cols-12 grid-cols-1 gap-2 ">
           <div className="md:col-span-6 bg-gray-50">
             <div className="w-full ">
@@ -124,17 +203,6 @@ const InformasiContent = () => {
                       </div>
                     ))
                   )}
-
-                  {/* <CardPublikasi
-                    title={"Publikasi 2"}
-                    content={"Laporan Keuangan November 2024"}
-                    id={0}
-                  />
-                  <CardPublikasi
-                    title={"Publikasi 1"}
-                    content={"Laporan Keuangan Septermber 2024"}
-                    id={0}
-                  /> */}
                 </div>
               </div>
             </div>
