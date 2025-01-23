@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 // import Link from "next/link";
 import CardPublikasi from "./CardPublikasi";
 import Image from "next/image";
+import { motion, useAnimation, useMotionValue } from "framer-motion";
 interface DataType {
   id: number;
   title: string;
@@ -27,6 +28,9 @@ const InformasiContent = () => {
 
   const searchParams = useSearchParams();
   const page = parseInt(searchParams.get("page") || "1", 5);
+  const scale = useMotionValue(1);
+
+  const controls = useAnimation();
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch("/api/allnews?page=" + page, {
@@ -57,7 +61,19 @@ const InformasiContent = () => {
     };
     fetchData();
     fetchDataPublish();
-  }, [page]); // Menggunakan array kosong sebagai dependencies
+    const sequence = async () => {
+      await controls.start({
+        scale: 1.1,
+        transition: {
+          duration: 1.5,
+          ease: "easeInOut",
+          repeat: Infinity,
+          repeatType: "reverse",
+        },
+      });
+    };
+    sequence();
+  }, [page, controls]); // Menggunakan array kosong sebagai dependencies
 
   if (!data && !dataPublish) {
     return (
@@ -75,19 +91,25 @@ const InformasiContent = () => {
   }
 
   return (
-    <section id="informasi" className="min-h-screen flex items-center">
+    <section id="informasi">
       <div className="mx-6">
         <div className="flex justify-center items-center w-full ">
-          <h1 className=" text-[50px] uppercase  text-center ">Informasi</h1>
+          <h1 className=" text-[50px] uppercase  text-center font-bold text-primary-light ">
+            Informasi
+          </h1>
         </div>
         <div className="flex-col justify-center items-center w-full md:px-20 my-14">
           <div className="w-full flex gap-4">
-            <Image
-              src={"/image/informasi.png"}
-              alt={"informasi"}
-              width={200}
-              height={200}
-            />
+            <div className="relative w-[200px] h-[200px] overflow-hidden">
+              <motion.div style={{ scale }} animate={controls}>
+                <Image
+                  src={"/image/informasi.png"}
+                  alt={"informasi"}
+                  layout="fill"
+                  objectFit="contain"
+                />
+              </motion.div>
+            </div>
             <div className="font-bold flex-col gap-4 ">
               <p className="text-4xl bg-secondary-dark p-5 w-fit rounded-3xl text-white">
                 INFORMASI
