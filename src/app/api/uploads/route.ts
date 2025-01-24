@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import path from "path";
 import fs from "fs";
+import { v4 as uuidv4 } from "uuid";
 
 const prisma = new PrismaClient();
 
@@ -20,13 +21,31 @@ export async function POST(request: NextRequest) {
     if (!fs.existsSync(uploadsDir)) {
       fs.mkdirSync(uploadsDir, { recursive: true });
     }
+    function generateUUID() {
+      return uuidv4();
+    }
 
-    const filePath = path.join(uploadsDir, file.name);
+    function getFileExtension(filename: string) {
+      if (!filename) return "";
+      const lastDotIndex = filename.lastIndexOf(".");
+      if (
+        lastDotIndex === -1 ||
+        lastDotIndex === 0 ||
+        lastDotIndex === filename.length - 1
+      ) {
+        return "";
+      }
+
+      return filename.slice(lastDotIndex + 1);
+    }
+    const extension = getFileExtension(file.name);
+    const newName = generateUUID().concat(`.${extension}`);
+    const filePath = path.join(uploadsDir, newName);
     const fileBuffer = await file.arrayBuffer();
     fs.writeFileSync(filePath, Buffer.from(fileBuffer));
 
     // Construct file URL
-    const fileUrl = `/uploads/${file.name}`;
+    const fileUrl = `/uploads/${newName}`;
 
     // Save file metadata to Prisma
     const fileRecord = await prisma.file.create({

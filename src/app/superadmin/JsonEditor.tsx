@@ -102,6 +102,7 @@ const JsonEditor: React.FC<JsonEditorProps> = ({ initialData, onSubmit }) => {
     }));
   };
   const handlePengurusTitleChange = (value: string) => {
+    console.log(value);
     setFormData((prev) => ({
       ...prev,
       susunanPengurus: { ...prev.susunanPengurus, title: value },
@@ -304,6 +305,16 @@ const JsonEditor: React.FC<JsonEditorProps> = ({ initialData, onSubmit }) => {
           <h3 className="text-xl font-semibold mb-2 capitalize">
             Susunan Pengurus
           </h3>
+
+          <div className="p-2">
+            <FieldEditor
+              label="Title"
+              value={formData.susunanPengurus.title}
+              onChange={(value) =>
+                handleFieldChange("susunanPengurus", "title", value)
+              }
+            />
+          </div>
 
           <PengurusArrayEditorWithImage
             label="Susunan Pengurus"

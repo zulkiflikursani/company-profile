@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import FieldEditor from "./FieldEditor";
+import React from "react";
 
 interface Pengurus {
   img: string;
@@ -25,23 +24,9 @@ interface PengurusArrayEditorWithImageProps {
 
 const PengurusArrayEditorWithImage: React.FC<
   PengurusArrayEditorWithImageProps
-> = ({ items, onItemsChange, title, addItem, removeItem, renderItem }) => {
-  const [titleInput, setTitleInput] = useState(title);
-
-  const handleTitleInputChange = (value: string) => {
-    setTitleInput(value);
-  };
-
+> = ({ items, onItemsChange, addItem, removeItem, renderItem }) => {
   return (
     <div>
-      <div className="p-4">
-        <FieldEditor
-          label="Title"
-          value={titleInput}
-          onChange={handleTitleInputChange}
-        />
-      </div>
-
       {items.map((item, index) => (
         <div key={index} className="border p-4 rounded-md my-2">
           {renderItem(item, index, (index, updatedItem) => {

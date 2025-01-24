@@ -61,19 +61,7 @@ const InformasiContent = () => {
     };
     fetchData();
     fetchDataPublish();
-    const sequence = async () => {
-      await controls.start({
-        scale: 1.1,
-        transition: {
-          duration: 1.5,
-          ease: "easeInOut",
-          repeat: Infinity,
-          repeatType: "reverse",
-        },
-      });
-    };
-    sequence();
-  }, [page, controls]); // Menggunakan array kosong sebagai dependencies
+  }, [page]); // Menggunakan array kosong sebagai dependencies
 
   if (!data && !dataPublish) {
     return (
