@@ -80,7 +80,10 @@ export default function TextEditorMenuBar({
       }
       const result = await response.json();
       setLoading(false);
-      return result.url; // The uploaded image URL
+      return {
+        url: result.url,
+        name: result.nama,
+      };
     } catch (error: unknown) {
       console.error("Error uploading image:", error);
       setLoading(false);
@@ -114,6 +117,20 @@ export default function TextEditorMenuBar({
     }
     return false;
   };
+
+  // async function waitForImageLoad(url: string) {
+  //   return new Promise((resolve, reject) => {
+  //     const img = new Image();
+  //     img.onload = () => resolve(url);
+  //     img.onerror = () => {
+  //       setTimeout(() => {
+  //         // Retry if loading fails after delay.
+  //         waitForImageLoad(url).then(resolve).catch(reject);
+  //       }, 1000);
+  //     };
+  //     img.src = url;
+  //   });
+  // }
 
   const buttons: ButtonConfig[] = [
     {
@@ -208,13 +225,16 @@ export default function TextEditorMenuBar({
           if (file) {
             try {
               const url = await uploadImage(file);
+              const apiImage = ("/api/imageview/?imageName=" +
+                url?.name) as string;
               if (url) {
+                // const finalUrl = await waitForImageLoad(url.url);
                 editor
                   ?.chain()
                   .focus()
                   .insertContent({
                     type: "resizableImage",
-                    attrs: { src: url },
+                    attrs: { src: apiImage },
                   })
                   .run();
               }

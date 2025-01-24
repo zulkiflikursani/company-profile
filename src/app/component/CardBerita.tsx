@@ -1,8 +1,9 @@
 "use client";
-import Image from "next/image";
+
 import Link from "next/link";
 import React from "react";
 import DOMPurify from "dompurify";
+import { ImageViewer } from "./ImageViewer";
 
 interface CardBeritaProps {
   title: string;
@@ -43,8 +44,8 @@ const CardBerita = (props: CardBeritaProps) => {
       <div className="grid grid-cols-6 gap-4 w-full h-full items-center justify-center ">
         <div className="md:col-span-1 col-span-2 w-full  h-full border border-gray-300">
           <div className="flex w-full h-full justify-center items-center ">
-            <Image
-              src={props.thumbnail}
+            <ImageViewer
+              imageName={props.thumbnail}
               alt="Gambar Berita"
               width={props.width || 150}
               height={props.height || 150}

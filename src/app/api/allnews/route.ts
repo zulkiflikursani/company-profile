@@ -1,12 +1,25 @@
 import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
+import path from "path";
 
 const DEFAULT_IMAGE_URL = "/uploads/default-thumbnail.png"; // Ganti dengan URL gambar default Anda
 
 const extractFirstImageUrl = (content: string): string | null => {
   const imgRegex = /<img.*?src=["'](.*?)["'].*?>/i;
   const match = content.match(imgRegex);
-  return match ? match[1] : null;
+
+  if (match) {
+    const imageUrl = match[1];
+    // Use path.basename to extract the filename
+    let filename = path.basename(imageUrl);
+    if (filename.startsWith("?imageName=")) {
+      filename = filename.substring("?imageName=".length);
+    }
+
+    return filename;
+  }
+
+  return null;
 };
 
 export async function GET(req: Request) {

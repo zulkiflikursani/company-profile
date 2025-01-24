@@ -51,14 +51,14 @@ export async function POST(request: NextRequest) {
     const fileRecord = await prisma.file.create({
       data: {
         originalName: file.name,
-        filename: file.name,
+        filename: newName,
         mimeType: file.type,
         size: file.size,
         url: fileUrl,
       },
     });
 
-    return NextResponse.json({ url: fileRecord.url });
+    return NextResponse.json({ url: fileRecord.url, nama: newName });
   } catch (error) {
     console.error("File upload error:", error);
     return NextResponse.json(
