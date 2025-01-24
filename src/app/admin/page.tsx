@@ -26,6 +26,12 @@ const page = () => {
         >
           <h3>Product</h3>
         </Link>
+        <Link
+          href={"/superadmin"}
+          className="bg-primary-light p-4  rounded-lg text-3xl text-gray-100"
+        >
+          <h3>Setting</h3>
+        </Link>
         <button
           onClick={async () => {
             await signOut();

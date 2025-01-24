@@ -7,7 +7,11 @@ export async function middleware(request: NextRequest) {
   const token = await getToken({ req: request });
   console.log("Middleware running", { token, path: request.nextUrl.pathname });
 
-  if (request.nextUrl.pathname.startsWith("/admin") && !token) {
+  if (
+    (request.nextUrl.pathname.startsWith("/admin") ||
+      request.nextUrl.pathname.startsWith("/superadmin")) &&
+    !token
+  ) {
     return NextResponse.redirect(new URL("/api/auth/signin", request.url));
   }
 
@@ -15,5 +19,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/admin/:path*", "/superadmin/:path*"],
 };
