@@ -1,15 +1,38 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { JsonData } from "../types/JsonType";
 
 interface PropsType {
   className?: string;
 }
 function Hero({ className }: PropsType) {
+  const [data, setData] = useState<JsonData>();
+  const [dataWa, setDataWa] = useState("");
+
   const [ref, inView] = useInView({
     threshold: 0.1,
   });
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/superadmin/aboutus"); // Call new endpoint
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const jsonData: JsonData = await response.json();
+        const wa = jsonData.moreinfo.nohp.replace(/[-+\s]/g, "");
+
+        setDataWa(wa);
+        setData(jsonData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setData({} as JsonData);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <section
       id="hero"
@@ -49,13 +72,14 @@ function Hero({ className }: PropsType) {
           </div>
         </div>
         <div className="w-full flex justify-start">
-          <button
+          <a
             className={`bg-primary-light md:ml-20 mx-auto text-white py-3 px-6 mt-10 rounded-full transform transition-all duration-300  ${
               inView ? "scale-105" : ""
             } `}
+            href={`https://wa.me/${dataWa}`}
           >
             Book a consultation
-          </button>
+          </a>
         </div>
       </div>
     </section>
