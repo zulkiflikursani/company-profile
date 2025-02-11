@@ -1,11 +1,13 @@
-// pages/pdf-viewer.tsx
+"use client";
 import React, { useState, useEffect } from "react";
 import PdfViewer from "@/app/component/PdfViewer";
-import { useRouter } from "next/router";
+// import { useRouter,useParauseSearchParams } from "next/router";
+import { useSearchParams } from "next/navigation";
 
 const PdfViewerPage = () => {
-  const router = useRouter();
-  const { pdfName } = router.query;
+  // const router = useRouter();
+  const searchParams = useSearchParams();
+  const pdfName = searchParams.get("pdfName");
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
