@@ -1,15 +1,32 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SusunanPengurus from "./SusunanPengurus";
 import Visimisi from "./Visimisi";
 import { useInView } from "react-intersection-observer";
-import data from "@/app/config/file-content.json";
+import { JsonData } from "../types/JsonType";
 
 function Aboutus() {
+  const [data, setData] = useState<JsonData>();
   const [ref, inView] = useInView({
     threshold: 0.1,
   });
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/superadmin/aboutus"); // Call new endpoint
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const jsonData: JsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setData({} as JsonData);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <section id="about" ref={ref} className="min-h-screen overflow-hidden">
       <div className="min-h-screen flex justify-center items-center relative">
@@ -21,14 +38,14 @@ function Aboutus() {
                   inView ? "translate-x-0" : "-translate-x-full"
                 } md:text-7xl text-4xl text-primary-light font-bold`}
               >
-                {data.aboutUs.title}
+                {data?.aboutUs.title}
               </h1>
               <p
                 className={`transform transition-all duration-700 delay-150 opacity-0 translate-y-4 ${
                   inView ? "opacity-100 translate-y-0" : ""
                 }`}
               >
-                {data.aboutUs.description}
+                {data?.aboutUs.description}
               </p>
             </div>
           </div>

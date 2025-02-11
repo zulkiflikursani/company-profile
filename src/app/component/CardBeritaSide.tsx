@@ -58,7 +58,7 @@ const CardBeritaSite = (props: CardBeritaProps) => {
           <div className="h-full text-sm ">{trimmedText}</div>
           <div className="flex  w-full justify-end">
             <Link
-              href={`news/details/${props.id}`}
+              href={`${props.id}`}
               className="bg-primary-light rounded-full text-white py-1 text-[10px] px-2"
             >
               Detail

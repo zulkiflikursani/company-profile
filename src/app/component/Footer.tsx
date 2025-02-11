@@ -1,8 +1,27 @@
+"use client";
 import Image from "next/image";
-import React from "react";
-import data from "@/app/config/file-content.json";
+import React, { useEffect, useState } from "react";
+import { JsonData } from "../types/JsonType";
 
 function Footer() {
+  const [data, setData] = useState<JsonData>();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/superadmin/aboutus"); // Call new endpoint
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const jsonData: JsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setData({} as JsonData);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <div className=" w-full mx-auto md:mb-10 mb-52 ">
       <div className="relative w-full h-[50vh] flex justify-center">
@@ -16,7 +35,7 @@ function Footer() {
       <div className="mx-auto w-10/12 grid md:grid-cols-2 grid-cols-1 gap-32 py-8">
         <div className="flex flex-col max-w-[400px]">
           <Image
-            src={data.logo.imgurl}
+            src={data?.logo.imgurl || "/image/logo.png"}
             width={200}
             height={200}
             className="mb-2"
@@ -50,7 +69,7 @@ function Footer() {
                 />
               </svg>
             </div>
-            <div className="max-w-400px">{data.moreinfo.alamat}</div>
+            <div className="max-w-400px">{data?.moreinfo.alamat}</div>
           </div>
           <hr className="h-px  bg-secondary-light border-0 " />
           <div className="flex m-2 items-center gap-2">
@@ -77,7 +96,7 @@ function Footer() {
                 </svg>
               </svg>
             </div>
-            <div className="max-w-400px">{data.moreinfo.nohp}</div>
+            <div className="max-w-400px">{data?.moreinfo.nohp}</div>
           </div>
           <hr className="h-px  bg-secondary-light border-0 " />
           <div className="flex m-2 items-center gap-2">
@@ -97,7 +116,7 @@ function Footer() {
                 />
               </svg>
             </div>
-            <div className="max-w-400px">{data.moreinfo["jam-operasi"]}</div>
+            <div className="max-w-400px">{data?.moreinfo["jam-operasi"]}</div>
           </div>
           <hr className="h-px  bg-secondary-light border-0 " />
           <div className="flex m-2 items-center gap-2">
@@ -117,7 +136,7 @@ function Footer() {
                 />
               </svg>
             </div>
-            <div className="max-w-400px">{data.moreinfo.email}</div>
+            <div className="max-w-400px">{data?.moreinfo.email}</div>
           </div>
           <div className="flex gap-3">
             <Image src={"/image/ojk.png"} alt={"OJK"} width={120} height={30} />

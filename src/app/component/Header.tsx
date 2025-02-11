@@ -2,16 +2,33 @@
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import MobileMenu from "./MobileMenu"; // Import MobileMenu component
-import data from "@/app/config/file-content.json";
+import { JsonData } from "../types/JsonType";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [data, setData] = useState<JsonData>();
+
   const dropdownRef = useRef(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for the mobile menu
   const session = useSession();
-
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/superadmin/aboutus"); // Call new endpoint
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const jsonData: JsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setData({} as JsonData);
+      }
+    };
+    fetchData();
+  }, []);
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -50,7 +67,7 @@ function Header() {
                 />
               </svg>
             </svg>
-            <span className="text-sm">{data.moreinfo.nohp}</span>
+            <span className="text-sm">{data?.moreinfo.nohp}</span>
           </div>
           <div className="flex space-x-1 items-center">
             <svg
@@ -67,7 +84,7 @@ function Header() {
                 d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
               />
             </svg>
-            <span className="text-sm">{data.moreinfo["jam-operasi"]}</span>
+            <span className="text-sm">{data?.moreinfo["jam-operasi"]}</span>
           </div>
         </div>
       </nav>
@@ -150,7 +167,7 @@ function Header() {
               )}
             </div>
             <div className="w-28"></div>
-            <Link href="#pembayaran">Pembiayaan</Link>
+            <Link href="/pengajuan">Pembiayaan</Link>
           </div>
         </div>
         <MobileMenu isOpen={isMobileMenuOpen} onClose={toggleMobileMenu} />

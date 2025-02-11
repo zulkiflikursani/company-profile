@@ -1,9 +1,27 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import data from "@/app/config/file-content.json";
+import { JsonData } from "../types/JsonType";
 
 function SusunanPengurus() {
+  const [data, setData] = useState<JsonData>();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/superadmin/aboutus"); // Call new endpoint
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const jsonData: JsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setData({} as JsonData);
+      }
+    };
+    fetchData();
+  }, []);
   const [ref, inView] = useInView({
     threshold: 0.1,
   });
@@ -16,7 +34,7 @@ function SusunanPengurus() {
         Susunan Pengurus
       </h1>
       <div className="grid md:grid-cols-5 gap-6 grid-cols-1 mx-5">
-        {data.susunanPengurus.pengurus.map((item, index) => {
+        {data?.susunanPengurus.pengurus.map((item, index) => {
           return (
             <div
               key={index}

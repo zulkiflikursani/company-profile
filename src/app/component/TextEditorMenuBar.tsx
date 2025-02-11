@@ -79,6 +79,7 @@ export default function TextEditorMenuBar({
         );
       }
       const result = await response.json();
+
       setLoading(false);
       return {
         url: result.url,
@@ -213,7 +214,7 @@ export default function TextEditorMenuBar({
     },
     {
       icon: <AiOutlinePicture className="size-5" />,
-      onClick: () => {
+      onClick: async () => {
         if (loading) {
           return;
         }
@@ -225,9 +226,12 @@ export default function TextEditorMenuBar({
           if (file) {
             try {
               const url = await uploadImage(file);
-              const apiImage = ("/api/imageview/?imageName=" +
-                url?.name) as string;
+              console.log("Image Upload success");
               if (url) {
+                const apiImage = ("/api/imageview/?imageName=" +
+                  url?.name +
+                  `&cache=${Date.now()}`) as string;
+                console.log("apiImage Before Set to Editor:", apiImage);
                 // const finalUrl = await waitForImageLoad(url.url);
                 editor
                   ?.chain()
