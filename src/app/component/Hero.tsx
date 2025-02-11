@@ -7,7 +7,7 @@ interface PropsType {
   className?: string;
 }
 function Hero({ className }: PropsType) {
-  const [data, setData] = useState<JsonData>();
+  // const [data, setData] = useState<JsonData>();
   const [dataWa, setDataWa] = useState("");
 
   const [ref, inView] = useInView({
@@ -25,10 +25,10 @@ function Hero({ className }: PropsType) {
         const wa = jsonData.moreinfo.nohp.replace(/[-+\s]/g, "");
 
         setDataWa(wa);
-        setData(jsonData);
+        // setData(jsonData);
       } catch (error) {
         console.error("Error fetching data:", error);
-        setData({} as JsonData);
+        // setData({} as JsonData);
       }
     };
     fetchData();
