@@ -71,6 +71,21 @@ model File {
   createdAt    DateTime @default(now())
 }
 
+model Pengajuan {
+  id          Int      @id @default(autoincrement())
+  nominal     Int
+  Tujuan      String
+  nama        String
+  Tlahir      String
+  tglLahir    DateTime
+  alamat      String
+  noktp       String   @unique
+  nohp        String
+  pekerjaan   String
+  penghasilan Int
+  createdAt   DateTime @default(now())
+}
+
 /**
  * ****  dba986c8-4d18-49c1-839e-f8afaac74fe4  ******
  */
