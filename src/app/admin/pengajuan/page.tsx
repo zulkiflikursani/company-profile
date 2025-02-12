@@ -165,6 +165,7 @@ function AdminDaftarPengajuan() {
           <thead>
             <tr className="bg-gray-100">
               <th className="py-2 px-4 border-b">ID</th>
+              <th className="py-2 px-4 border-b">TGL PENGAJUAN</th>
               <th className="py-2 px-4 border-b">Nama</th>
               <th className="py-2 px-4 border-b">Tujuan</th>
               <th className="py-2 px-4 border-b">Nominal</th>
@@ -177,6 +178,9 @@ function AdminDaftarPengajuan() {
             {pengajuanList.map((pengajuan) => (
               <tr key={pengajuan.id} className="hover:bg-gray-50">
                 <td className="py-2 px-4 border-b">{pengajuan.id}</td>
+                <td className="py-2 px-4 border-b">
+                  {formatDate(pengajuan.createdAt)}
+                </td>
                 <td className="py-2 px-4 border-b">{pengajuan.nama}</td>
                 <td className="py-2 px-4 border-b">{pengajuan.Tujuan}</td>
                 <td className="py-2 px-4 border-b">
@@ -221,6 +225,13 @@ function AdminDaftarPengajuan() {
                       <td className="py-2 font-semibold w-1/3">ID</td>
                       <td className="py-2">:</td>
                       <td className="py-2">{selectedPengajuan.id}</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 font-semibold">Tanggal Pengajuan</td>
+                      <td className="py-2">:</td>
+                      <td className="py-2">
+                        {formatDate(selectedPengajuan.createdAt)}
+                      </td>
                     </tr>
                     <tr>
                       <td className="py-2 font-semibold">Nama</td>
