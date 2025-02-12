@@ -1,7 +1,7 @@
 // app/admin/daftarpengajuan/page.tsx
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 interface Pengajuan {
   id: number;
@@ -18,14 +18,29 @@ interface Pengajuan {
   createdAt: string;
 }
 
+// Helper function to format the date
+function formatDate(dateString: string) {
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) {
+    return "Invalid Date"; // Or handle the invalid date as you see fit
+  }
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${day}-${month}-${year}`;
+}
+
 function AdminDaftarPengajuan() {
   const [pengajuanList, setPengajuanList] = useState<Pengajuan[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedPengajuan, setSelectedPengajuan] = useState<Pengajuan | null>(
     null
-  ); // State for selected Pengajuan
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
+  );
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,7 +53,6 @@ function AdminDaftarPengajuan() {
         setPengajuanList(data);
         setLoading(false);
       } catch (e) {
-        // Remove type any
         let errorMessage = "An unknown error occurred";
         if (e instanceof Error) {
           errorMessage = e.message;
@@ -54,40 +68,85 @@ function AdminDaftarPengajuan() {
   }, []);
 
   const handleDelete = async (id: number) => {
-    try {
-      const response = await fetch(`/api/pengajuan/${id}`, {
-        method: "DELETE",
-      });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+    // Confirmation dialog
+    if (
+      window.confirm("Apakah anda yakin akan menghapus pengajuan Pengajuan?")
+    ) {
+      try {
+        const response = await fetch(`/api/pengajuan/delete`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          body: JSON.stringify({ id }),
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-      // Optimistically update the UI by removing the deleted item
-      setPengajuanList(pengajuanList.filter((item) => item.id !== id));
-      alert("Pengajuan deleted successfully");
-    } catch (e) {
-      // Remove type any
-      let errorMessage = "An unknown error occurred";
-      if (e instanceof Error) {
-        errorMessage = e.message;
-      } else if (typeof e === "string") {
-        errorMessage = e;
+        setPengajuanList((prevList) =>
+          prevList.filter((item) => item.id !== id)
+        );
+        alert("Pengajuan deleted successfully");
+      } catch (e) {
+        let errorMessage = "An unknown error occurred";
+        if (e instanceof Error) {
+          errorMessage = e.message;
+        } else if (typeof e === "string") {
+          errorMessage = e;
+        }
+        setError(errorMessage);
+        alert(`Error deleting Pengajuan: ${errorMessage}`);
       }
-      setError(errorMessage);
-      alert(`Error deleting Pengajuan: ${errorMessage}`);
     }
   };
 
-  // Function to handle "View" button click
   const handleView = (pengajuan: Pengajuan) => {
     setSelectedPengajuan(pengajuan);
-    setIsModalOpen(true); // Open the modal
+    setIsModalOpen(true);
   };
 
-  // Function to close the modal
   const closeModal = () => {
+    console.log(selectedPengajuan);
     setIsModalOpen(false);
     setSelectedPengajuan(null);
+  };
+
+  const handlePrint = () => {
+    if (modalRef.current) {
+      const printContent = modalRef.current.innerHTML;
+      const printWindow = window.open("", "_blank");
+      if (printWindow) {
+        printWindow.document.write(`
+          <html>
+            <head>
+              <title>Pengajuan</title>
+              <style>
+                /* Add any styles you want for the print view */
+                body { font-family: Arial, sans-serif; }
+                table { width: 100%; border-collapse: collapse; }
+                td, th { border: 1px solid #ddd; padding: 8px; }
+                th { background-color: #f2f2f2; }
+                @media print {
+                  .no-print {
+                    display: none;
+                  }
+                }
+                
+              </style>
+            </head>
+            <body>
+              ${printContent}
+            </body>
+          </html>
+        `);
+        printWindow.document.close();
+        printWindow.focus();
+        printWindow.print();
+        printWindow.close();
+      }
+    }
+    closeModal();
   };
 
   if (loading) {
@@ -120,18 +179,20 @@ function AdminDaftarPengajuan() {
                 <td className="py-2 px-4 border-b">{pengajuan.id}</td>
                 <td className="py-2 px-4 border-b">{pengajuan.nama}</td>
                 <td className="py-2 px-4 border-b">{pengajuan.Tujuan}</td>
-                <td className="py-2 px-4 border-b">{pengajuan.nominal}</td>
+                <td className="py-2 px-4 border-b">
+                  {pengajuan.nominal.toLocaleString()}
+                </td>
                 <td className="py-2 px-4 border-b">{pengajuan.nohp}</td>
                 <td className="py-2 px-4 border-b">{pengajuan.pekerjaan}</td>
                 <td className="py-2 px-4 border-b">
                   <button
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mr-2"
-                    onClick={() => handleView(pengajuan)} // Handle "View" button click
+                    onClick={() => handleView(pengajuan)}
                   >
                     View
                   </button>
                   <button
-                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded "
                     onClick={() => handleDelete(pengajuan.id)}
                   >
                     Delete
@@ -143,44 +204,92 @@ function AdminDaftarPengajuan() {
         </table>
       </div>
 
-      {/* Modal to display Pengajuan details */}
       {isModalOpen && selectedPengajuan && (
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-          {" "}
-          {/* Added z-50 */}
-          <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
-            <div className="mt-3 text-center">
-              <h3 className="text-lg leading-6 font-medium text-gray-900">
-                Pengajuan Details
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 print:bg-white print:overflow-visible">
+          <div
+            className="relative top-20 mx-auto p-8 border w-[95%] md:w-[38rem] shadow-lg rounded-md bg-white print:shadow-none print:border-none print:w-auto"
+            ref={modalRef}
+          >
+            <div className="mt-3">
+              <h3 className="text-lg leading-6 font-medium text-gray-900 print:text-black text-center mb-4">
+                Detail Pengajuan
               </h3>
-              <div className="mt-2">
-                <p className="text-sm text-gray-500">
-                  ID: {selectedPengajuan.id}
-                  <br />
-                  Nama: {selectedPengajuan.nama}
-                  <br />
-                  Tujuan: {selectedPengajuan.Tujuan}
-                  <br />
-                  Nominal: {selectedPengajuan.nominal}
-                  <br />
-                  Tempat Lahir: {selectedPengajuan.Tlahir}
-                  <br />
-                  Tanggal Lahir: {selectedPengajuan.tglLahir}
-                  <br />
-                  Alamat: {selectedPengajuan.alamat}
-                  <br />
-                  No. KTP: {selectedPengajuan.noktp}
-                  <br />
-                  No. HP: {selectedPengajuan.nohp}
-                  <br />
-                  Pekerjaan: {selectedPengajuan.pekerjaan}
-                  <br />
-                  Penghasilan: {selectedPengajuan.penghasilan}
-                </p>
+              <div className="mt-2 print:text-black">
+                <table className="min-w-full">
+                  <tbody>
+                    <tr>
+                      <td className="py-2 font-semibold w-1/3">ID</td>
+                      <td className="py-2">:</td>
+                      <td className="py-2">{selectedPengajuan.id}</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 font-semibold">Nama</td>
+                      <td className="py-2">:</td>
+                      <td className="py-2">{selectedPengajuan.nama}</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 font-semibold">Tujuan</td>
+                      <td className="py-2">:</td>
+                      <td className="py-2">{selectedPengajuan.Tujuan}</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 font-semibold">Nominal</td>
+                      <td className="py-2">:</td>
+                      <td className="py-2">
+                        {selectedPengajuan.nominal.toLocaleString()}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 font-semibold">Tempat Lahir</td>
+                      <td className="py-2">:</td>
+                      <td className="py-2">{selectedPengajuan.Tlahir}</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 font-semibold">Tanggal Lahir</td>
+                      <td className="py-2">:</td>
+                      <td className="py-2">
+                        {formatDate(selectedPengajuan.tglLahir)}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 font-semibold">Alamat</td>
+                      <td className="py-2">:</td>
+                      <td className="py-2">{selectedPengajuan.alamat}</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 font-semibold">No. KTP</td>
+                      <td className="py-2">:</td>
+                      <td className="py-2">{selectedPengajuan.noktp}</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 font-semibold">No. HP</td>
+                      <td className="py-2">:</td>
+                      <td className="py-2">{selectedPengajuan.nohp}</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 font-semibold">Pekerjaan</td>
+                      <td className="py-2">:</td>
+                      <td className="py-2">{selectedPengajuan.pekerjaan}</td>
+                    </tr>
+                    <tr>
+                      <td className="py-2 font-semibold">Penghasilan</td>
+                      <td className="py-2">:</td>
+                      <td className="py-2">
+                        {selectedPengajuan.penghasilan.toLocaleString()}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-              <div className="items-center px-4 py-3">
+              <div className="items-center px-4 py-3 flex justify-between mt-4">
                 <button
-                  className="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300"
+                  className="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md  shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 print:hidden no-print"
+                  onClick={handlePrint}
+                >
+                  Print
+                </button>
+                <button
+                  className="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md  shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300 print:hidden no-print"
                   onClick={closeModal}
                 >
                   Close

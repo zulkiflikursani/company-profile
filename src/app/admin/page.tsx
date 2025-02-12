@@ -32,6 +32,12 @@ const page = () => {
         >
           <h3>Setting</h3>
         </Link>
+        <Link
+          href={"/admin/pengajuan"}
+          className="bg-primary-light p-4  rounded-lg text-3xl text-gray-100"
+        >
+          <h3>Pengajuan</h3>
+        </Link>
         <button
           onClick={async () => {
             await signOut();

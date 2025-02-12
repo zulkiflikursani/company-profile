@@ -1,16 +1,12 @@
-// app/api/pengajuan/[id]/route.ts
+// src/app/api/pengajuan/[id]/route.ts
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import type { NextRequest } from "next/server";
 
 const prisma = new PrismaClient();
 
-interface Params {
-  id: string;
-}
-
-export async function DELETE(req: NextRequest, { params }: { params: Params }) {
-  const { id } = params;
+export async function DELETE(req: NextRequest) {
+  const { id } = await req.json();
   try {
     const parsedId = parseInt(id, 10);
 
