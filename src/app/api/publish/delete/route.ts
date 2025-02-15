@@ -6,7 +6,7 @@ export async function DELETE(req: NextRequest) {
 
   const { id } = await req.json();
   try {
-    const del = await prisma.newsPost.delete({
+    const del = await prisma.publishPost.delete({
       where: {
         id: parseInt(id, 10),
       },

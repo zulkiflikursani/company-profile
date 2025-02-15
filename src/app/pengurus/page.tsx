@@ -1,18 +1,36 @@
 "use client";
-import React from "react";
-import data from "@/app/config/file-content.json";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { JsonData } from "../types/JsonType";
 
-function page() {
+function Page() {
+  const [data, setData] = useState<JsonData>();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/superadmin/aboutus"); // Call new endpoint
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const jsonData: JsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setData({} as JsonData);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <div className="min-h-screen w-full flex flex-col justify-center items-center">
       {/* <SusunanPengurus /> */}
       <div>
         <h3 className="text-4xl text-primary-light font-bold text-center mb-4">
-          {data.susunanPengurus.title}
+          {data?.susunanPengurus.title}
         </h3>
       </div>
-      {data.susunanPengurus.pengurus.map((pengurus, index) => (
+      {data?.susunanPengurus.pengurus.map((pengurus, index) => (
         <div
           key={index}
           className={`md:w-8/12 w-full p-2 mx-auto flex flex-col md:flex-row  ${
@@ -40,4 +58,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
