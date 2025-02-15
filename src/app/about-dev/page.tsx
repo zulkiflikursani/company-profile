@@ -12,9 +12,7 @@ function page() {
         Design By PRAKTISIUS
       </h2>
       <h1 className="text-4xl font-bold">Tim Pengembang: </h1>
-      <p className="text-2xl font-bold mt-3 underline">
-        Manajer Analis Sistem:
-      </p>
+      <p className="text-2xl font-bold mt-3 underline">Manajer Project :</p>
       <p className="text-xl font-bold"> Dr. Dinar, S.E., M.Si</p>
       <p className="text-xl ">
         (Dosen Program Studi Akuntansi Universitas Fajar)
