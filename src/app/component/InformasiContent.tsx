@@ -203,16 +203,23 @@ const InformasiContent = () => {
                   {!dataPublish ? (
                     <p>No data available</p>
                   ) : (
-                    dataPublish.map((item: DataTypePublish, index: number) => (
-                      <div key={index}>
-                        <CardPublikasi
-                          url={item.url}
-                          title={"Publikasi " + (index + 1)}
-                          content={item.title}
-                          id={0}
-                        />
-                      </div>
-                    ))
+                    dataPublish.map((item: DataTypePublish, index: number) => {
+                      const filteredUrl = item.url.replace(
+                        "/uploads/publish/",
+                        ""
+                      );
+                      return (
+                        <div key={index}>
+                          <CardPublikasi
+                            title={"Publikasi " + (index + 1)}
+                            content={item.title}
+                            // thumbnail={item.thumbnailUrl}
+                            id={item.id}
+                            url={`/api/pdfview?pdfName=${filteredUrl}`}
+                          />
+                        </div>
+                      );
+                    })
                   )}
                 </div>
               </div>
